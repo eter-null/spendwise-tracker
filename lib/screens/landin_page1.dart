@@ -2,8 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
+import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
-import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
+// import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
 
 class IntroductionScreens extends StatelessWidget {
   IntroductionScreens({super.key});
@@ -50,7 +51,7 @@ class IntroductionScreens extends StatelessWidget {
             onDone: () {
               if (kDebugMode) {
                 print("Done clicked");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ScaffoldWithBackground()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Dashboard()));
               }
             },
             scrollPhysics: const ClampingScrollPhysics(),
@@ -101,11 +102,11 @@ class IntroductionScreens extends StatelessWidget {
 
   PageDecoration getPageDecoration() {
     return const PageDecoration(
-      imagePadding: EdgeInsets.only(top: 120),
+      imagePadding: EdgeInsets.only(top: 50),
       imageFlex: 2,
       pageColor: Colors.white,
       bodyPadding: EdgeInsets.only(top: 8, left: 20, right: 20),
-      titlePadding: EdgeInsets.only(top: 30),
+      titlePadding: EdgeInsets.only(top: 15),
       bodyTextStyle: TextStyle(color: MyColor.fadedText, fontSize: 15),
       titleTextStyle: TextStyle(color: MyColor.gradientBackground, fontWeight: FontWeight.w700, fontSize: 20),
     );
