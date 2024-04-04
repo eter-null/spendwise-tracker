@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spendwise_tracker/screens/auth/login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -284,12 +285,13 @@ class _SignUpState extends State<SignUp> {
                                   letterSpacing: 0,
                                 ),
                               ),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {},
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Login()),
+                                  );
+                                },
                                 child: Text(
                                   'Login here.',
                                   style: TextStyle(
@@ -299,6 +301,7 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                               ),
+
                             ],
                           ),
                         ),
