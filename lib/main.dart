@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/screens/landin_page1.dart';
+import 'package:spendwise_tracker/screens/auth/sign_up.dart';
+import 'package:spendwise_tracker/screens/auth/login.dart';
+import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
 
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: IntroductionScreens()
+      // home: SignUp()
+      // home: Login()
     );
     //IntroductionScreen();
     // MaterialApp(
