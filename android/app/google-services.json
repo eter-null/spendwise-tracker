@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "631936601720",
+    "project_id": "spendwise-tracker",
+    "storage_bucket": "spendwise-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631936601720:android:cd54daf73dc4c98894e78d",
+        "android_client_info": {
+          "package_name": "com.example.spendwise_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACYYxu3STYFDkX-jKMhqo-4OvUFcK0cP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
