@@ -15,7 +15,15 @@ class ScaffoldWithBackground extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 300,
-            color: MyColor.gradientBackground,
+            //color: MyColor.gradientBackground,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF78BFFC), Color(0xFF254662)],
+                stops: [0, 1],
+                begin: AlignmentDirectional(0, -1),
+                end: AlignmentDirectional(0, 1),
+              ),
+            ),
           ),
           // Container(
           //   width: MediaQuery.of(context).size.width,
