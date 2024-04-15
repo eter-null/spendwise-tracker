@@ -8,4 +8,12 @@ class MyColor{
   static const fadedBackground= Color.fromARGB(255, 221, 227, 235);
   
   static const fadedText=Color.fromARGB(255, 154, 156, 160);
+
+  static const lightBlue = Color(0xFF83C2F8);
+  static const fadedGrey = Color(0xFFAABBDC);
+
+  static const ruddyBlue = Color(0xFF63A6E0);
+  static const blueGray = Color(0xFF5E9ACE);
+  static const yinminBlue = Color(0xFF2C5374);
+  static const powderBlue = Color(0xFFA4C8E8);
 }

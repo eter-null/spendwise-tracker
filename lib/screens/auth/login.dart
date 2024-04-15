@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
+import '../../const_config/color_config.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,7 +15,6 @@ class _LoginState extends State<Login> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final List<Widget> randomAvatar = <Widget>[];
   bool _obscureText = true;
 
 

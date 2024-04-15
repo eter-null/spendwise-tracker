@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:spendwise_tracker/screens/auth/login.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -18,7 +18,6 @@ class _SignUpState extends State<SignUp> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final List<Widget> randomAvatar = <Widget>[];
   bool _obscureText = true;
 
   @override
