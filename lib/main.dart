@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/screens/add_debt_page.dart';
 import 'package:spendwise_tracker/screens/add_expense_page.dart';
+import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/screens/debt_page.dart';
 import 'package:spendwise_tracker/screens/financial_goals_page.dart';
 import 'package:spendwise_tracker/screens/landin_page1.dart';
@@ -30,13 +32,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: IntroductionScreens()
-      //   home: DebtPage()
-      //   home: AddDebtPage()
-      home: AddExpensePage()
+      // home: DebtPage()
+      // home: AddDebtPage()
+      // home: AddExpensePage()
       // home: NewExpensesPage()
       // home: FinancialGoals()
       // home: Dashboard()
-      // home: SignUp()
+      home: SignUp()
       // home: Login()
     );
     //IntroductionScreen();

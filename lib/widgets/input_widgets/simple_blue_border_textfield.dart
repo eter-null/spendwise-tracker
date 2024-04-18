@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../const_config/color_config.dart';
 import '../../const_config/text_config.dart';
+import '../../utils/validator.dart';
 
 
-class SimpleBlueBorderInputField extends StatefulWidget {
+class SimpleBlueBorderTextField extends StatefulWidget {
   final TextEditingController controller;
-  final String fieldTitle;
+  final String? fieldTitle;
   final String hintText;
   final bool needValidation;
   final String errorMessage;
@@ -17,35 +18,34 @@ class SimpleBlueBorderInputField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final TextInputType? inputType;
   final String? suffixText;
-  final IconData? prefixIcon;
+  final IconData? suffixIcon;
   final Color? backgroundColor;
   final bool? viewOnly;
-  final bool? needTitle;
   final TextAlign? textAlign;
   final TextStyle? hintTextStyle;
   final TextStyle? inputTextStyle;
   final Key? itemkey;
   final TextStyle? titleStyle;
   final Widget? prefixWidget;
+  final Function? onValueChange;
 
   final FormFieldValidator<String>? validatorClass;
 
-  const SimpleBlueBorderInputField(
+  const SimpleBlueBorderTextField(
       {super.key,
         required this.controller,
         required this.hintText,
         required this.needValidation,
         required this.errorMessage,
-        required this.fieldTitle,
+        this.fieldTitle,
         this.textInputAction,
         this.inputType,
         this.suffixText,
         this.backgroundColor,
         this.viewOnly,
         this.validatorClass,
-        this.needTitle,
         this.textAlign,
-        this.prefixIcon,
+        this.suffixIcon,
         this.itemkey,
         this.borderRadius,
         this.borderSide,
@@ -53,13 +53,14 @@ class SimpleBlueBorderInputField extends StatefulWidget {
         this.borderThickness,
         this.hintTextStyle,
         this.inputTextStyle,
+        this.onValueChange,
         this.titleStyle, this.prefixWidget});
 
   @override
-  State<SimpleBlueBorderInputField> createState() => _SimpleBlueBorderInputField();
+  State<SimpleBlueBorderTextField> createState() => _SimpleBlueBorderTextField();
 }
 
-class _SimpleBlueBorderInputField extends State<SimpleBlueBorderInputField> {
+class _SimpleBlueBorderTextField extends State<SimpleBlueBorderTextField> {
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +70,10 @@ class _SimpleBlueBorderInputField extends State<SimpleBlueBorderInputField> {
       children: [
 
         // if header is needed
-        if (widget.needTitle ?? true)
+        if (widget.fieldTitle != null)
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-            child: Text(widget.fieldTitle,
+            child: Text(widget.fieldTitle!,
               style: TextStyle(
                 fontFamily: 'Roboto',
                 color: MyColor.blueGray,
@@ -81,7 +82,7 @@ class _SimpleBlueBorderInputField extends State<SimpleBlueBorderInputField> {
               )
             ),
           ),
-        if (widget.needTitle ?? true) const SizedBox(height: 5),
+        if (widget.fieldTitle != null) const SizedBox(height: 5),
 
 
         TextFormField(
@@ -96,18 +97,19 @@ class _SimpleBlueBorderInputField extends State<SimpleBlueBorderInputField> {
 
           // decor
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
             errorStyle: TextDesign().bodyTextExtraSmall.copyWith(fontSize: 11, color: Colors.red),
             hintText: widget.hintText,
             hintStyle: widget.hintTextStyle ?? TextDesign().greyHintText,
             filled: true,
             fillColor: widget.backgroundColor ?? Colors.white,
             suffixText: widget.suffixText != null ? widget.suffixText.toString() : "",
-            suffixIcon: null,
-            prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon) : null),
+            suffixIcon: Icon(widget.suffixIcon, color: MyColor.lightBlue,),
+            // prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon) : null),
             border: OutlineInputBorder(borderRadius: widget.borderRadius ?? BorderRadius.circular(10), borderSide: BorderSide.none),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: widget.borderColor ?? MyColor.lightBlue,
+                color: widget.borderColor ?? MyColor.powderBlue,
                 width: widget.borderThickness ?? 2,
               ),
               borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
@@ -119,21 +121,35 @@ class _SimpleBlueBorderInputField extends State<SimpleBlueBorderInputField> {
               ),
               borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
             ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.error,
+                width: widget.borderThickness ?? 2,
+              ),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.error,
+                width: widget.borderThickness ?? 2,
+              ),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+            ),
           ),
 
-          // textInputAction: widget.textInputAction ?? TextInputAction.next,
-          // onFieldSubmitted: (value) {
-          //   widget.controller.text = value;
-          // },
-          // onSaved: (value) {
-          //   widget.controller.text = value!;
-          // },
-          // // validator: widget.validatorClass ?? ValidatorClass().noValidationRequired,
-          // onChanged: (value) {
-          //   if (value.isNotEmpty && widget.onValueChange != null) {
-          //     widget.onValueChange!(value);
-          //   }
-          // },
+          textInputAction: widget.textInputAction ?? TextInputAction.next, // goes 2 next field
+          onFieldSubmitted: (value) {
+            widget.controller.text = value;
+          },
+          onSaved: (value) {
+            widget.controller.text = value!;
+          },
+          validator: widget.validatorClass ?? ValidatorClass().noValidationRequired,
+          onChanged: (value) {
+            if (value.isNotEmpty && widget.onValueChange != null) {
+              widget.onValueChange!(value);
+            }
+          },
         ),
       ],
     );

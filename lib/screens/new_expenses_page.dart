@@ -32,7 +32,7 @@ class _NewExpensesPage extends State<NewExpensesPage> {
                 resizeToAvoidBottomInset: false,
                 body: Column(
                   children: [
-                    SimpleBlueBorderInputField(
+                    SimpleBlueBorderTextField(
                       controller: itemNameController,
                       hintText: 'sad',
                       needValidation: false,
@@ -41,7 +41,7 @@ class _NewExpensesPage extends State<NewExpensesPage> {
                       borderThickness: 2,
                       borderColor: MyColor.powderBlue,
                     ),
-                    SimpleBlueBorderInputField(
+                    SimpleBlueBorderTextField(
                       controller: priceController,
                       hintText: 'sad',
                       needValidation: false,
@@ -50,7 +50,7 @@ class _NewExpensesPage extends State<NewExpensesPage> {
                       borderThickness: 2,
                       borderColor: MyColor.powderBlue,
                     ),
-                    SimpleBlueBorderInputField(
+                    SimpleBlueBorderTextField(
                       controller: quantityController,
                       hintText: 'sad',
                       needValidation: false,

@@ -31,7 +31,7 @@ class _AddDebtPage extends State<AddDebtPage> {
                   resizeToAvoidBottomInset: false,
                   body: Column(
                     children: [
-                      SimpleBlueBorderInputField(
+                      SimpleBlueBorderTextField(
                         controller: debtNameController,
                         hintText: 'sad',
                         needValidation: false,

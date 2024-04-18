@@ -1,7 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
+import 'package:spendwise_tracker/widgets/input_widgets/blue_border_password_textfield.dart';
 import '../../const_config/color_config.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../utils/validator.dart';
+import '../../widgets/custom_buttons/rounded_blue_button.dart';
+import '../../widgets/input_widgets/simple_blue_border_textfield.dart';
+import '../dashboard.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,10 +20,11 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
-  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool _obscureText = true;
+
+  final firebase = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
 
 
   @override
@@ -25,188 +34,91 @@ class _LoginState extends State<Login> {
           CustomBackground(
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
-                  body: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 35),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Color(0xFF72B4EC),
-                            fontSize: 30,
-                            letterSpacing: 0,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                        child: TextFormField(
-                          controller: TextEditingController(),
-                          focusNode: FocusNode(),
-                          autofocus: false,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelStyle: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
+                  body: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 35),
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Color(0xFF72B4EC),
+                                fontSize: 30,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                              ),
                             ),
+                          ),
+                          SimpleBlueBorderTextField(
+                            controller: emailController,
                             hintText: 'johndoe@gmail.com',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFFAABBDC),
-                              letterSpacing: 0,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF72B4EC),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).errorColor,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).errorColor,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            suffixIcon: Icon(
-                              Icons.email,
-                              color: Color(0xFF83C2F8),
-                            ),
+                            needValidation: true,
+                            errorMessage: '',
+                            borderThickness: 2,
+                            borderRadius: BorderRadius.circular(30),
+                            validatorClass: ValidatorClass().validateEmail,
+                            suffixIcon: Icons.email,
                           ),
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            letterSpacing: 0,
+                          SizedBox(height: 20,),
+                          BlueBorderPasswordTextField(
+                            password: passwordController,
+                            hintText: '●●●●●●',
+                            errorMessage: 'Incorrect password',
+                            borderThickness: 2,
+                            borderRadius: BorderRadius.circular(30),
+                            borderColor: MyColor.powderBlue,
                           ),
-                          minLines: null,
-                          //validator: _model.textController2Validator.asValidator(context),
-                        ),
-                      ),
-                      Padding(
-                        //padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.3),
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, MediaQuery.of(context).size.height * 0.25),
-                        child: TextFormField(
-                          controller: TextEditingController(),
-                          focusNode: FocusNode(),
-                          autofocus: false,
-                          obscureText: _obscureText,
-                          decoration: InputDecoration(
-                            labelStyle: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              fontSize: 14,
-                              letterSpacing: 0,
-                            ),
-                            hintText: '••••••••••••••',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Roboto',
-                              color: Color(0xFFAABBDC),
-                              fontSize: 14,
-                              letterSpacing: 0,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF72B4EC),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).errorColor,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).errorColor,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                              focusNode: FocusNode(skipTraversal: true),
-                              child: Icon(
-                                _obscureText ? Icons.lock : Icons.lock_open_outlined,
-                                color: Color(0xFF83C2F8),
-                                size: 25,
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            letterSpacing: 0,
-                          ),
-                          minLines: null,
-                          //validator: _model.textController3Validator.asValidator(context),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 40),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            print('?');
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF72B4EC)),
-                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                              EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                            ),
-                            shape: MaterialStateProperty.all<OutlinedBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                            ),
-                            elevation: MaterialStateProperty.all<double>(3),
-                          ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 40,
-                            child: Center(
-                              child: Text(
-                                'LOGIN',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: Colors.white,
-                                  fontSize: 11,
-                                  letterSpacing: 0,
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 50),
+                                child: RoundedBlueButton(
+                                  onClick: ()async {
+                                    FocusScope.of(context).unfocus();
+                                    if(formKey.currentState!.validate())
+                                    {
+                                      await auth.signInWithEmailAndPassword(
+                                          email: emailController.text.trim(),
+                                          password: passwordController.text.trim()
+                                      ).then((value) {
+                                        if(value.user != null)
+                                        {
+                                          // showSnackBar(
+                                          //     context: context,
+                                          //     title: "Successful",
+                                          //     height: 200,
+                                          //     message: "Welcome to Spendwise Tracker",
+                                          //     failureMessage: false
+                                          // );
+                                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const Dashboard()), (route) => false);
+                                        }
+                                        else
+                                        {
+                                          // showSnackBar(
+                                          //     context: context,
+                                          //     title: "Error",
+                                          //     height: 200,
+                                          //     message: "Please try again later",
+                                          //     failureMessage: true
+                                          // );
+                                        }
+                                      });
+                                    }
+                                  },
+                                  label: 'LOGIN',
                                 ),
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   )
               )
           ),
@@ -231,245 +143,5 @@ class _LoginState extends State<Login> {
           ),
         ]
     );
-
-    // return Scaffold(
-    //     resizeToAvoidBottomInset: false,
-    //     body: Stack(
-    //       children: [
-    //         Column(
-    //           mainAxisSize: MainAxisSize.max,
-    //           children: [
-    //             Container(
-    //               width: double.infinity,
-    //               height: 350,
-    //               decoration: BoxDecoration(
-    //                 gradient: LinearGradient(
-    //                   colors: [Color(0xFF78BFFC), Color(0xFF254662)],
-    //                   stops: [0, 1],
-    //                   begin: AlignmentDirectional(0, -1),
-    //                   end: AlignmentDirectional(0, 1),
-    //                 ),
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //
-    //         Column(
-    //           mainAxisSize: MainAxisSize.max,
-    //           children: [
-    //             Padding(
-    //               padding: EdgeInsetsDirectional.fromSTEB(0, 85, 0, 20),
-    //               child: Text(
-    //                 'Spendwise Tracker',
-    //                 style: TextStyle(
-    //                   fontFamily: 'Roboto',
-    //                   color: Theme.of(context).secondaryHeaderColor,
-    //                   fontSize: 30,
-    //                   letterSpacing: 0,
-    //                 ),
-    //               ),
-    //             ),
-    //             Align(
-    //               alignment: AlignmentDirectional(0, 0.65),
-    //               child: Padding(
-    //                 padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-    //                 child: Card(
-    //                   clipBehavior: Clip.antiAliasWithSaveLayer,
-    //                   color: Theme.of(context).scaffoldBackgroundColor,
-    //                   elevation: 4,
-    //                   shape: RoundedRectangleBorder(
-    //                     borderRadius: BorderRadius.circular(24),
-    //                   ),
-    //                   child: Column(
-    //                     mainAxisSize: MainAxisSize.min,
-    //                     children: [
-    //                       Padding(
-    //                         padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 35),
-    //                         child: Text(
-    //                           'Login',
-    //                           style: TextStyle(
-    //                             fontFamily: 'Roboto',
-    //                             color: Color(0xFF72B4EC),
-    //                             fontSize: 30,
-    //                             letterSpacing: 0,
-    //                             fontWeight: FontWeight.normal,
-    //                           ),
-    //                         ),
-    //                       ),
-    //                       Padding(
-    //                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-    //                         child: TextFormField(
-    //                           controller: TextEditingController(),
-    //                           focusNode: FocusNode(),
-    //                           autofocus: false,
-    //                           obscureText: false,
-    //                           decoration: InputDecoration(
-    //                             labelStyle: TextStyle(
-    //                               fontFamily: 'Readex Pro',
-    //                               letterSpacing: 0,
-    //                             ),
-    //                             hintText: 'johndoe@gmail.com',
-    //                             hintStyle: TextStyle(
-    //                               fontFamily: 'Readex Pro',
-    //                               color: Color(0xFFAABBDC),
-    //                               letterSpacing: 0,
-    //                             ),
-    //                             enabledBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Color(0xFF72B4EC),
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             focusedBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Theme.of(context).primaryColor,
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             errorBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Theme.of(context).errorColor,
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             focusedErrorBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Theme.of(context).errorColor,
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             suffixIcon: Icon(
-    //                               Icons.email,
-    //                               color: Color(0xFF83C2F8),
-    //                             ),
-    //                           ),
-    //                           style: TextStyle(
-    //                             fontFamily: 'Roboto',
-    //                             letterSpacing: 0,
-    //                           ),
-    //                           minLines: null,
-    //                           //validator: _model.textController2Validator.asValidator(context),
-    //                         ),
-    //                       ),
-    //                       Padding(
-    //                         //padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.3),
-    //                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, MediaQuery.of(context).size.height * 0.3),
-    //                         child: TextFormField(
-    //                           controller: TextEditingController(),
-    //                           focusNode: FocusNode(),
-    //                           autofocus: false,
-    //                           obscureText: _obscureText,
-    //                           decoration: InputDecoration(
-    //                             labelStyle: TextStyle(
-    //                               fontFamily: 'Readex Pro',
-    //                               fontSize: 14,
-    //                               letterSpacing: 0,
-    //                             ),
-    //                             hintText: '••••••••••••••',
-    //                             hintStyle: TextStyle(
-    //                               fontFamily: 'Roboto',
-    //                               color: Color(0xFFAABBDC),
-    //                               fontSize: 14,
-    //                               letterSpacing: 0,
-    //                             ),
-    //                             enabledBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Color(0xFF72B4EC),
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             focusedBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Theme.of(context).primaryColor,
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             errorBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Theme.of(context).errorColor,
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             focusedErrorBorder: OutlineInputBorder(
-    //                               borderSide: BorderSide(
-    //                                 color: Theme.of(context).errorColor,
-    //                                 width: 2,
-    //                               ),
-    //                               borderRadius: BorderRadius.circular(24),
-    //                             ),
-    //                             suffixIcon: InkWell(
-    //                               onTap: () {
-    //                                 setState(() {
-    //                                   _obscureText = !_obscureText;
-    //                                 });
-    //                               },
-    //                               focusNode: FocusNode(skipTraversal: true),
-    //                               child: Icon(
-    //                                 _obscureText ? Icons.lock : Icons.lock_open_outlined,
-    //                                 color: Color(0xFF83C2F8),
-    //                                 size: 25,
-    //                               ),
-    //                             ),
-    //                           ),
-    //                           style: TextStyle(
-    //                             fontFamily: 'Roboto',
-    //                             letterSpacing: 0,
-    //                           ),
-    //                           minLines: null,
-    //                           //validator: _model.textController3Validator.asValidator(context),
-    //                         ),
-    //                       ),
-    //                       Padding(
-    //                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 40),
-    //                         child: ElevatedButton(
-    //                           onPressed: () {
-    //                             print('?');
-    //                           },
-    //                           style: ButtonStyle(
-    //                             backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF72B4EC)),
-    //                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-    //                               EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-    //                             ),
-    //                             shape: MaterialStateProperty.all<OutlinedBorder>(
-    //                               RoundedRectangleBorder(
-    //                                 borderRadius: BorderRadius.circular(24),
-    //                               ),
-    //                             ),
-    //                             elevation: MaterialStateProperty.all<double>(3),
-    //                           ),
-    //                           child: SizedBox(
-    //                             width: double.infinity,
-    //                             height: 40,
-    //                             child: Center(
-    //                               child: Text(
-    //                                 'LOGIN',
-    //                                 style: TextStyle(
-    //                                   fontFamily: 'Roboto',
-    //                                   color: Colors.white,
-    //                                   fontSize: 11,
-    //                                   letterSpacing: 0,
-    //                                 ),
-    //                               ),
-    //                             ),
-    //                           ),
-    //                         ),
-    //                       ),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //           ],
-    //         )
-    //       ],
-    //     )
-    // );
   }
 }

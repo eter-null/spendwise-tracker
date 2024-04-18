@@ -64,7 +64,7 @@ class _RoundedBlueButton extends State<RoundedBlueButton> {
       ),
       child: SizedBox(
         width: double.infinity,
-        height: 40,
+        height: 45,
         child: Center(
           child: Text(
             widget.label,
