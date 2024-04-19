@@ -16,4 +16,11 @@ class MyColor{
   static const blueGray = Color(0xFF5E9ACE);
   static const yinminBlue = Color(0xFF2C5374);
   static const powderBlue = Color(0xFFA4C8E8);
+  static const skyBlue = Color(0xFF2699FB);
+  static const uranianBlue = Color(0xFFBCE0FD);
+
+  // bar graphs
+  static const lightIndigo = Color(0xFFAF8BF9);
+  static const lavenderPink = Color(0xFFFDBCF2);
+
 }

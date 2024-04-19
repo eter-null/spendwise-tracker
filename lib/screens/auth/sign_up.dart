@@ -80,7 +80,7 @@ class _SignUpState extends State<SignUp> {
                           SizedBox(height: 20,),
                           BlueBorderPasswordTextField(
                             password: passwordController,
-                            hintText: '●●●●●●',
+                            hintText: '••••••••••••••',
                             errorMessage: 'Incorrect password',
                             borderThickness: 2,
                             borderRadius: BorderRadius.circular(30),

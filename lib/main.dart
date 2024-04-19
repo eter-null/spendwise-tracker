@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/screens/add_debt_page.dart';
 import 'package:spendwise_tracker/screens/add_expense_page.dart';
+import 'package:spendwise_tracker/screens/analysis_page.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/screens/debt_page.dart';
 import 'package:spendwise_tracker/screens/financial_goals_page.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
       // home: Dashboard()
       home: SignUp()
       // home: Login()
+      // home: AnalysisPage()
     );
     //IntroductionScreen();
     // MaterialApp(
