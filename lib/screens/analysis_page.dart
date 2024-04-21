@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
+import 'package:spendwise_tracker/screens/test/show_bar.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spendwise_tracker/widgets/data_plotting/grouped_bar_chart.dart';
 import '../../const_config/color_config.dart';
 import '../../widgets/custom_buttons/rounded_blue_button.dart';
 import '../widgets/custom_page/custom_pageview.dart';
@@ -38,8 +41,14 @@ class _AnalysisPage extends State<AnalysisPage> {
                         Expanded(
                             child: CustomPageView(controller: controller,
                               children: [
-                                Center(child: Text("The stars collide, When you and I")),
-                                Center(child: Text('Intertwine for the first time'))
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
+                                  child: Container(
+                                    child: Testing()
+                                  )
+                                ),
+                                Center(child: Text('Line Chart'))
                               ],
                             )
                         ),

@@ -15,8 +15,16 @@ import 'package:spendwise_tracker/screens/auth/sign_up.dart';
 import 'package:spendwise_tracker/screens/auth/login.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/screens/new_expenses_page.dart';
+import 'package:spendwise_tracker/screens/test/show_bar.dart';
+import 'package:spendwise_tracker/screens/test/test.dart';
+import 'package:spendwise_tracker/screens/test/test2.dart';
+import 'package:spendwise_tracker/screens/test/test2addc.dart';
+import 'package:spendwise_tracker/screens/test/test2adde.dart';
+import 'package:spendwise_tracker/screens/test/test2viewc.dart';
+import 'package:spendwise_tracker/screens/test/test2viewe.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
+import 'package:spendwise_tracker/widgets/data_plotting/mock_firestore.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +39,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    MockFirestore.setupMockData();
     return MaterialApp(
       // home: IntroductionScreens()
       // home: DebtPage()
@@ -39,9 +48,18 @@ class MyApp extends StatelessWidget {
       // home: NewExpensesPage()
       // home: FinancialGoals()
       // home: Dashboard()
-      home: SignUp()
+      // home: SignUp(
+      // home: BarChartSample2()
       // home: Login()
-      // home: AnalysisPage()
+      home: AnalysisPage()
+
+      // home: ViewCategories()
+      // home: ViewExpense()
+      // home: AddCategory()
+      // home: AddExpenses()
+      // home: Testing()
+      // home: Test2()
+
     );
     //IntroductionScreen();
     // MaterialApp(

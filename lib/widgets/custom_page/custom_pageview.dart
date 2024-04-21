@@ -40,7 +40,6 @@ class _CustomPageView extends State<CustomPageView> {
               spacing:  20.0,
               dotWidth:  10.0,
               dotHeight:  10.0,
-
             ),
             onDotClicked: (index){}
         )
