@@ -48,10 +48,10 @@ class MyApp extends StatelessWidget {
       // home: NewExpensesPage()
       // home: FinancialGoals()
       // home: Dashboard()
-      // home: SignUp(
+      home: SignUp()
       // home: BarChartSample2()
       // home: Login()
-      home: AnalysisPage()
+      // home: AnalysisPage()
 
       // home: ViewCategories()
       // home: ViewExpense()
