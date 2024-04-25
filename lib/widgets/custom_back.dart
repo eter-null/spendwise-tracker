@@ -25,7 +25,7 @@ class CustomBackground extends StatelessWidget {
               height:MediaQuery.of(context).size.height,
               padding: const EdgeInsets.all(10.0),
               
-              margin: const EdgeInsets.only(top: 150, bottom: 50, left: 30, right: 30),
+              margin: const EdgeInsets.only(top: 150, bottom: 100, left: 30, right: 30),
               width: MediaQuery.of(context).size.width,
         
               decoration: BoxDecoration(
@@ -33,6 +33,7 @@ class CustomBackground extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: child,
+              
             ),
           ],
       ),

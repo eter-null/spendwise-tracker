@@ -56,15 +56,16 @@ class MyApp extends StatelessWidget {
       // home: BarChartSample2()
       // home: Login()
       // home: AnalysisPage()
-        home: Categories(),
+        home: AddExpensePage(),
       // home: ViewCategories()
       // home: ViewExpense()
       // home: AddCategory()
       // home: AddExpenses()
       // home: Testing()
       // home: Test2()
-
+    
     );
+    
     //IntroductionScreen();
     // MaterialApp(
     //   // title: 'Dashboard',
