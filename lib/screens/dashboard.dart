@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
+import 'package:spendwise_tracker/widgets/custom_containers/label_amount_box.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -9,7 +10,37 @@ class Dashboard extends StatelessWidget {
     return const Stack(
       children: [
         
-        CustomBackground(child: Text("HELLO")),
+        CustomBackground(
+          child: Scaffold(
+                  resizeToAvoidBottomInset: false,
+                  body: Padding(padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 20),
+                        LabelAmountBox(
+                          label: 'Total Spent',
+                          amount: 2000,
+                        ),
+                        SizedBox(height: 15),
+                        LabelAmountBox(
+                          label: 'Total Expenses',
+                          amount: 500,
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Expenses Chart',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF72B4EC),
+                            fontFamily: 'Roboto',
+                            fontSize: 10
+                          ),
+                        ),
+                        
+                      ],
+                    ),)
+              )
+        ),
         Center(
           child: Column(
             children: [
@@ -17,7 +48,8 @@ class Dashboard extends StatelessWidget {
               Text(
                 "BDT 15,000",
                 style: TextStyle(
-                  fontWeight: FontWeight.w200,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Roboto',
                   fontSize: 25,
                   color: Colors.white,
                   decoration: TextDecoration.none,

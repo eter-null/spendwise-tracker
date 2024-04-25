@@ -528,7 +528,7 @@ class _CategoriesState extends State<Categories> {
                     'Categories',
                     style: TextStyle(
                       fontWeight: FontWeight.w200,
-                      // fontFamily: 'Roboto',
+                      fontFamily: 'Roboto',
                       color: Colors.white,
                       fontSize: 25,
                       letterSpacing: 0,
