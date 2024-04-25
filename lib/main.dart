@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/screens/add_debt_page.dart';
 import 'package:spendwise_tracker/screens/add_expense_page.dart';
 import 'package:spendwise_tracker/screens/analysis_page.dart';
+import 'package:spendwise_tracker/screens/categories.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/screens/debt_page.dart';
 import 'package:spendwise_tracker/screens/financial_goals_page.dart';
@@ -22,6 +25,7 @@ import 'package:spendwise_tracker/screens/test/test2addc.dart';
 import 'package:spendwise_tracker/screens/test/test2adde.dart';
 import 'package:spendwise_tracker/screens/test/test2viewc.dart';
 import 'package:spendwise_tracker/screens/test/test2viewe.dart';
+import 'package:spendwise_tracker/screens/test/testcat.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
 import 'package:spendwise_tracker/widgets/data_plotting/mock_firestore.dart';
@@ -48,11 +52,11 @@ class MyApp extends StatelessWidget {
       // home: NewExpensesPage()
       // home: FinancialGoals()
       // home: Dashboard()
-      home: SignUp()
+      // home: SignUp()
       // home: BarChartSample2()
       // home: Login()
       // home: AnalysisPage()
-
+        home: Categories(),
       // home: ViewCategories()
       // home: ViewExpense()
       // home: AddCategory()
