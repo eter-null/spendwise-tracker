@@ -1,5 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
@@ -55,50 +56,73 @@ class _CategoriesState extends State<Categories> {
                     title: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                child: Image.asset(data['icon'], width: 30, height:30),
-                                
+                            // icon + name
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                    child: Image.asset(data['icon'], width: 30, height:30),
+                              
+                                  ),
+                                  Flexible(
+                                    child: Text(data['name'],
+                                      overflow: TextOverflow.ellipsis, // ... after txt overflow used w flexible
+                                      style: TextStyle(
+                                      // height: 5,
+                                      fontWeight: FontWeight.bold,
+                                      // fontFamily: 'Roboto',
+                                      fontSize: 15,
+                                      color: Colors.blue[300],
+                                      decoration: TextDecoration.none,
+                                    ),),
+                                  ),
+                                ],
                               ),
-                            Text(data['name'], style: TextStyle(
-                              // height: 5,
-                              fontWeight: FontWeight.bold,
-                                  // fontFamily: 'Roboto',
-                                  fontSize: 15,
-                                  color: Colors.blue[300],
-                                  decoration: TextDecoration.none,
-                            ),),
+                            ),
+
                             SizedBox(width: data['name'].length<=4?35:8,),
-                            IconButton(
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.all(5),
-                              foregroundColor: Colors.white, 
-                              backgroundColor: MyColor.blueFadedBackground,// foreground
+
+                            //  btn
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.all(5),
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: MyColor.blueFadedBackground,// foreground
+                                  ),
+                                  onPressed: () { }, icon: Icon(Icons.add, size: 20),
+                                  // child: Text('Edit'),
+                                ),
+                                IconButton(
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.all(5),
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: MyColor.blueFadedBackground,// foreground
+                                  ),
+                                  onPressed: () { }, icon: Icon(Icons.edit, size: 20),
+                                  // child: Text('Edit'),
+                                ),
+                                IconButton(
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.all(5),
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: MyColor.blueFadedBackground,// foreground
+                                  ),
+                                  onPressed: () {},
+                                  iconSize: 20,
+                                  icon: Icon(Icons.delete),
+                                  // child: Text('Edit'),
+                                )
+                              ],
                             ),
-                            onPressed: () { }, icon: Icon(Icons.add, size: 20),
-                            // child: Text('Edit'),
-                          ),
-                            IconButton(
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.all(5),
-                              foregroundColor: Colors.white, 
-                              backgroundColor: MyColor.blueFadedBackground,// foreground
-                            ),
-                            onPressed: () { }, icon: Icon(Icons.edit, size: 20),
-                            // child: Text('Edit'),
-                          ),
-                          IconButton(
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.all(5),
-                              foregroundColor: Colors.white, 
-                              backgroundColor: MyColor.blueFadedBackground,// foreground
-                            ),
-                            onPressed: () {}, 
-                            iconSize: 20,
-                            icon: Icon(Icons.delete),
-                            // child: Text('Edit'),
-                          )
+
                             ],
                           ),
                           Divider( color: MyColor.blueFadedBackground,),
