@@ -61,8 +61,17 @@ class _AnalysisPage extends State<AnalysisPage> {
                                               });
                                             },
                                             items: _buildMonthDropdownItems(),
+                                            decoration: InputDecoration(
+                                              hintText: 'Select Month', // Add your hint text here
+                                              border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: MyColor.yinminBlue),
+                                              ),
+                                              //prefixIcon: Icon(Icons.calendar_month, size: 20),
+                                            ),
                                           ),
                                         ),
+
+                                        SizedBox(width: 5),
 
                                         //dropdown 2
                                         Expanded(
@@ -75,6 +84,13 @@ class _AnalysisPage extends State<AnalysisPage> {
                                               });
                                             },
                                             items: _buildMonthDropdownItems(),
+                                            decoration: InputDecoration(
+                                              hintText: 'Select Month',
+                                              border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: MyColor.yinminBlue),
+                                              ),
+                                              //prefixIcon: Icon(Icons.calendar_month, size: 20),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -106,7 +122,10 @@ class _AnalysisPage extends State<AnalysisPage> {
     return months.map((String month) {
       return DropdownMenuItem<String>(
         value: month,
-        child: Text(month),
+        child: Text(month,
+          style: TextStyle(fontSize: 15),
+        ),
+
       );
     }).toList();
   }
