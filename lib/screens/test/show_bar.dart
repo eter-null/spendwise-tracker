@@ -1,8 +1,13 @@
+import 'package:charts_flutter/flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:spendwise_tracker/const_config/color_config.dart';
+import '../../const_config/color_config.dart';
+import '../../const_config/text_config.dart';
+import '../../utils/database_manipulation/totals_by_month.dart';
 
 class Testing extends StatefulWidget {
   const Testing({Key? key}) : super(key: key);
@@ -15,58 +20,19 @@ class _TestingState extends State<Testing> {
   String? _selectedMonth1;
   String? _selectedMonth2;
 
-  Stream<Map<String, Map<String, double>>> _getCategoryTotalsByMonthStream(String month1, String month2) {
-    return FirebaseFirestore.instance
-        .collection('Users')
-        .doc('kcOCOXbxLIOC1lxqYMSGN3gQDX83')
-        .collection('categories')
-        .snapshots()
-        .asyncMap((categoriesSnapshot) async {
-      Map<String, Map<String, double>> categoryTotalsByMonth = {};
+  // instantiate the class to use
+  GetTotalsByMonth totalsByMonth = GetTotalsByMonth();
 
-      for (QueryDocumentSnapshot categoryDoc in categoriesSnapshot.docs) {
-        List<dynamic> expenseIDs = categoryDoc['expenseID'];
-
-        for (dynamic expenseID in expenseIDs) {
-          DocumentSnapshot expenseDoc = await FirebaseFirestore.instance
-              .collection('Users')
-              .doc('kcOCOXbxLIOC1lxqYMSGN3gQDX83') // Replace with actual UID
-              .collection('expenses')
-              .doc(expenseID)
-              .get();
-
-          Timestamp timestamp = expenseDoc['date'];
-          DateTime date = timestamp.toDate();
-          String monthYear = DateFormat('yyyy-MM').format(date);
-
-          if (monthYear == month1 || monthYear == month2) {
-            double expenseAmount = expenseDoc['amount'].toDouble(); // Convert to double
-
-            categoryTotalsByMonth.putIfAbsent(categoryDoc['name'], () => {});
-
-            categoryTotalsByMonth[categoryDoc['name']]!.update(
-              monthYear,
-                  (value) => value + expenseAmount,
-              ifAbsent: () => expenseAmount,
-            );
-          }
-        }
-      }
-
-      return categoryTotalsByMonth;
-    });
-  }
-
-  List<charts.Series<OrdinalSales, String>> _createSeries(List<String> categories, Map<String, Map<String, double>> data) {
-    List<charts.Series<OrdinalSales, String>> seriesList = [];
+  List<charts.Series<CategorySpendings, String>> _createSeries(List<String> categories, Map<String, Map<String, double>> data) {
+    List<charts.Series<CategorySpendings, String>> seriesList = [];
     for (String month in [_selectedMonth1!, _selectedMonth2!]) {
-      List<OrdinalSales> salesData = [];
+      List<CategorySpendings> salesData = [];
       for (String category in categories) {
         double total = data[category]?.containsKey(month) ?? false ? data[category]![month]! : 0.0;
-        salesData.add(OrdinalSales(category, total));
+        salesData.add(CategorySpendings(category, total));
       }
       seriesList.add(
-        charts.Series<OrdinalSales, String>(
+        charts.Series<CategorySpendings, String>(
           id: month,
           domainFn: (sales, _) => sales.category,
           measureFn: (sales, _) => sales.total,
@@ -78,18 +44,20 @@ class _TestingState extends State<Testing> {
     return seriesList;
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(''),
-      // ),
       body: Column(
         children: [
+          // drop down
           Row(
+            mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
+                //dropdown 1
                 child: DropdownButtonFormField<String>(
+                  isExpanded: true, // remove overflow
                   value: _selectedMonth1,
                   onChanged: (String? value) {
                     setState(() {
@@ -97,11 +65,13 @@ class _TestingState extends State<Testing> {
                     });
                   },
                   items: _buildMonthDropdownItems(),
-                  decoration: InputDecoration(labelText: _selectedMonth1, labelStyle: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold)),
                 ),
               ),
+
+              //dropdown 2
               Expanded(
                 child: DropdownButtonFormField<String>(
+                  isExpanded: true, // remove overflow
                   value: _selectedMonth2,
                   onChanged: (String? value) {
                     setState(() {
@@ -109,19 +79,22 @@ class _TestingState extends State<Testing> {
                     });
                   },
                   items: _buildMonthDropdownItems(),
-                  decoration: InputDecoration(labelText: _selectedMonth2, labelStyle: TextStyle(color: MyColor.lightBlue, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
           ),
+
+          //graph show
           Expanded(
             child: StreamBuilder<Map<String, Map<String, double>>>(
-              stream: _getCategoryTotalsByMonthStream(_selectedMonth1 ?? '', _selectedMonth2 ?? ''),
+              stream: totalsByMonth.categoryTotalsByMonthStream(_selectedMonth1 ?? '', _selectedMonth2 ?? ''),
               builder: (BuildContext context, AsyncSnapshot<Map<String, Map<String, double>>> snapshot) {
+                if (_selectedMonth1 == null || _selectedMonth2 == null) {
+                  return Center(child: Text('Please select two months'));
+                }
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 }
-
                 if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 }
@@ -133,16 +106,24 @@ class _TestingState extends State<Testing> {
                 }
 
                 List<String> categories = categoryTotalsByMonth.keys.toList();
-                List<charts.Series<OrdinalSales, String>> seriesList = _createSeries(categories, categoryTotalsByMonth);
-
-
+                List<charts.Series<CategorySpendings, String>> seriesList = _createSeries(categories, categoryTotalsByMonth);
 
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: charts.BarChart(
                     seriesList,
                     animate: true,
+                    domainAxis: charts.OrdinalAxisSpec(
+                      renderSpec: charts.SmallTickRendererSpec(
+                        labelRotation: 45, // Rotate the labels for better visibility
+                      ),
+                    ),
                     barGroupingType: charts.BarGroupingType.grouped,
+                    behaviors: [
+                      charts.SeriesLegend(
+                        position: charts.BehaviorPosition.top,
+                      ),
+                    ],
                   ),
                 );
               },
@@ -167,15 +148,16 @@ class _TestingState extends State<Testing> {
     List<String> months = [];
     DateTime now = DateTime.now();
     for (int i = 0; i < 12; i++) {
-      months.add(DateFormat('yyyy-MM').format(DateTime(now.year, now.month - i)));
+      months.add(DateFormat('MMMM yyyy').format(DateTime(now.year, now.month - i)));
     }
     return months;
   }
 }
 
-class OrdinalSales {
+// graph
+class CategorySpendings {
   final String category;
   final double total;
 
-  OrdinalSales(this.category, this.total);
+  CategorySpendings(this.category, this.total);
 }

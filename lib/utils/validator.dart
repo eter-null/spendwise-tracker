@@ -1,3 +1,4 @@
+
 class ValidatorClass {
   String? validateEmail(String? value) {
     if (value!.isEmpty) {

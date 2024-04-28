@@ -5,7 +5,10 @@ import '../const_config/color_config.dart';
 
 class CustomBackground extends StatelessWidget {
   final Widget child;
-  const CustomBackground({super.key, required this.child});
+  final EdgeInsetsGeometry margin;
+  const CustomBackground({super.key, required this.child,
+    this.margin = const EdgeInsets.only(top: 150, bottom: 100, left: 30, right: 30),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +27,16 @@ class CustomBackground extends StatelessWidget {
               alignment: Alignment.center,
               height:MediaQuery.of(context).size.height,
               padding: const EdgeInsets.all(10.0),
-              
-              margin: const EdgeInsets.only(top: 150, bottom: 100, left: 30, right: 30),
+
+              margin: margin,
               width: MediaQuery.of(context).size.width,
-        
+
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: child,
-              
+
             ),
           ],
       ),

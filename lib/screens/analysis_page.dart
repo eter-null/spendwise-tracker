@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/screens/test/show_bar.dart';
@@ -20,6 +21,8 @@ class AnalysisPage extends StatefulWidget {
 }
 
 class _AnalysisPage extends State<AnalysisPage> {
+  String? selectedMonth1;
+  String? selectedMonth2;
 
   final firebase = FirebaseFirestore.instance;
   final formKey = GlobalKey<FormState>();
@@ -31,22 +34,58 @@ class _AnalysisPage extends State<AnalysisPage> {
     return Stack(
         children: [
           CustomBackground(
+            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.11, bottom: 100, left: 30, right: 30),
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
                             child: CustomPageView(controller: controller,
                               children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height,
-                                  child: Container(
-                                    child: Testing()
-                                  )
+                                Column(
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          //dropdown 1
+                                          child: DropdownButtonFormField<String>(
+                                            isExpanded: true, // remove overflow
+                                            value: selectedMonth1,
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedMonth1 = value;
+                                              });
+                                            },
+                                            items: _buildMonthDropdownItems(),
+                                          ),
+                                        ),
+
+                                        //dropdown 2
+                                        Expanded(
+                                          child: DropdownButtonFormField<String>(
+                                            isExpanded: true, // remove overflow
+                                            value: selectedMonth2,
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedMonth2 = value;
+                                              });
+                                            },
+                                            items: _buildMonthDropdownItems(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 20,),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height - 400,
+                                      child: GroupedBarChart(month1: selectedMonth1, month2: selectedMonth2,),
+                                    ),
+                                  ],
+
                                 ),
                                 Center(child: Text('Line Chart'))
                               ],
@@ -59,5 +98,25 @@ class _AnalysisPage extends State<AnalysisPage> {
           ),
         ]
     );
+  }
+
+  // get and map dropdown months
+  List<DropdownMenuItem<String>> _buildMonthDropdownItems() {
+    final List<String> months = _getMonths();
+    return months.map((String month) {
+      return DropdownMenuItem<String>(
+        value: month,
+        child: Text(month),
+      );
+    }).toList();
+  }
+  // get past 12 months
+  List<String> _getMonths() {
+    List<String> months = [];
+    DateTime now = DateTime.now();
+    for (int i = 0; i < 12; i++) {
+      months.add(DateFormat('MMMM yyyy').format(DateTime(now.year, now.month - i)));
+    }
+    return months;
   }
 }

@@ -18,6 +18,7 @@ import 'package:spendwise_tracker/screens/auth/sign_up.dart';
 import 'package:spendwise_tracker/screens/auth/login.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/screens/new_expenses_page.dart';
+import 'package:spendwise_tracker/screens/test/datetest.dart';
 import 'package:spendwise_tracker/screens/test/show_bar.dart';
 import 'package:spendwise_tracker/screens/test/test.dart';
 import 'package:spendwise_tracker/screens/test/test2.dart';
@@ -43,7 +44,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    MockFirestore.setupMockData();
     return MaterialApp(
       // home: IntroductionScreens()
       // home: DebtPage()
@@ -53,17 +53,20 @@ class MyApp extends StatelessWidget {
       // home: FinancialGoals()
       // home: Dashboard()
       // home: SignUp()
-      // home: BarChartSample2()
       // home: Login()
-      // home: AnalysisPage()
+      home: AnalysisPage()
       // home: AddExpensePage(),
+
+
+
       // home: ViewCategories()
       // home: ViewExpense()
       // home: AddCategory()
       // home: AddExpenses()
       // home: Testing()
       // home: Test2()
-      home: Categories(),
+      // home: Categories(),
+      // home: DateTest(),
     
     );
     
