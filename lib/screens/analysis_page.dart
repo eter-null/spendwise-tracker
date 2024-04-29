@@ -10,8 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:spendwise_tracker/widgets/data_plotting/grouped_bar_chart.dart';
 import '../../const_config/color_config.dart';
 import '../../widgets/custom_buttons/rounded_blue_button.dart';
-import '../utils/database_manipulation/daily_earnings.dart';
-import '../utils/database_manipulation/daily_expenses.dart';
+import '../services/utils/database_manipulation/daily_earnings.dart';
+import '../services/utils/database_manipulation/daily_expenses.dart';
 import '../widgets/custom_page/custom_pageview.dart';
 import '../widgets/data_plotting/expenses_line_graph.dart';
 

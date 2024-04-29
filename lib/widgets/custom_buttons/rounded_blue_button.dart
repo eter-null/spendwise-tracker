@@ -51,7 +51,7 @@ class _RoundedBlueButton extends State<RoundedBlueButton> {
     return ElevatedButton(
       onPressed: widget.onClick,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(MyColor.lightBlue),
+        backgroundColor: MaterialStateProperty.all<Color>(widget.backgroundColor ?? MyColor.lightBlue),
         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(horizontal: 24, vertical: 0),
         ),
@@ -63,7 +63,7 @@ class _RoundedBlueButton extends State<RoundedBlueButton> {
         elevation: MaterialStateProperty.all<double>(3),
       ),
       child: SizedBox(
-        width: double.infinity,
+        width: widget.width ?? double.infinity,
         height: 45,
         child: Center(
           child: Text(

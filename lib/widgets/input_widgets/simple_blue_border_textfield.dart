@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../const_config/color_config.dart';
 import '../../const_config/text_config.dart';
-import '../../utils/validator.dart';
+import '../../services/utils/validator.dart';
 
 
 class SimpleBlueBorderTextField extends StatefulWidget {
@@ -29,9 +29,11 @@ class SimpleBlueBorderTextField extends StatefulWidget {
   final Widget? prefixWidget;
   final Function? onValueChange;
 
+  final String? initialVal;
+
   final FormFieldValidator<String>? validatorClass;
 
-  const SimpleBlueBorderTextField(
+   SimpleBlueBorderTextField(
       {super.key,
         required this.controller,
         required this.hintText,
@@ -54,7 +56,11 @@ class SimpleBlueBorderTextField extends StatefulWidget {
         this.hintTextStyle,
         this.inputTextStyle,
         this.onValueChange,
-        this.titleStyle, this.prefixWidget});
+        this.titleStyle,
+        this.prefixWidget,
+        this.initialVal
+
+      });
 
   @override
   State<SimpleBlueBorderTextField> createState() => _SimpleBlueBorderTextField();
@@ -86,6 +92,7 @@ class _SimpleBlueBorderTextField extends State<SimpleBlueBorderTextField> {
 
 
         TextFormField(
+
           key: widget.itemkey,
           controller: widget.controller,
           keyboardType: widget.inputType ?? TextInputType.text,

@@ -72,19 +72,31 @@ Container buildMyNavBar(BuildContext context) {
 					size: 35, 
 				) 
 
-		), 
-		IconButton( 
-			enableFeedback: false, 
-			onPressed: () { 
-			
-			 
-			}, 
-			icon: const Icon( 
-					Icons.widgets_rounded, 
-					color: Colors.white, 
-					size: 35, 
-				) 
-		), 
+		),
+		IconButton(
+				enableFeedback: false,
+				onPressed: () {
+
+
+				},
+				icon: const Icon(
+					Icons.add,
+					color: Colors.white,
+					size: 35,
+				)
+		),
+		IconButton(
+		enableFeedback: false,
+		onPressed: () {
+
+
+		},
+		icon: const Icon(
+				Icons.widgets_rounded,
+				color: Colors.white,
+				size: 35,
+			)
+	),
 		IconButton( 
 			enableFeedback: false, 
 			onPressed: () { 

@@ -7,7 +7,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import '../../const_config/color_config.dart';
 import '../../const_config/text_config.dart';
-import '../../utils/database_manipulation/totals_by_two_month.dart';
+import '../../services/utils/database_manipulation/totals_by_two_month.dart';
 
 
 

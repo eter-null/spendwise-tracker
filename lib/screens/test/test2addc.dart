@@ -21,18 +21,21 @@ class _AddCategoryState extends State<AddCategory> {
           .collection('Users')
           .doc('kcOCOXbxLIOC1lxqYMSGN3gQDX83') // Replace with actual UID
           .collection('categories')
-          .add({
+          .add(
+          {
         'name': name,
         'icon': icon,
         'expenseID': [], // Initialize with an empty array for expense IDs
-      });
+      }
+      );
 
       // Clear text fields after adding the category
       _nameController.clear();
       _iconController.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter both name and icon for the category')),
+        SnackBar(
+            content: Text('Please enter both name and icon for the category')),
       );
     }
   }

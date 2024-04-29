@@ -29,13 +29,15 @@ import 'package:spendwise_tracker/screens/test/test2viewc.dart';
 import 'package:spendwise_tracker/screens/test/test2viewe.dart';
 import 'package:spendwise_tracker/screens/test/test_totals_month.dart';
 import 'package:spendwise_tracker/screens/test/testcat.dart';
+import 'package:spendwise_tracker/services/utils/database_manipulation/default_category_initiator.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
+import 'package:spendwise_tracker/widgets/custom_modals/addCategoryModal.dart';
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
-import 'package:spendwise_tracker/widgets/data_plotting/mock_firestore.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // DatabaseInitializer.initializeDefaultCategories();
   runApp(const MyApp());
 }
 
@@ -56,10 +58,10 @@ class MyApp extends StatelessWidget {
       // home: Dashboard()
       // home: SignUp()
       // home: Login()
-      home: AnalysisPage()
+      // home: AnalysisPage()
       // home: AddExpensePage(),
-
-
+      home: Categories(),
+      // home: AddCategoryModal(),
 
       // home: ViewCategories()
       // home: ViewExpense()
@@ -67,7 +69,6 @@ class MyApp extends StatelessWidget {
       // home: AddExpenses()
       // home: Testing()
       // home: Test2()
-      // home: Categories(),
       // home: DateTest(),
       // home: GraphTest(),
       // home: MonthlySummary()

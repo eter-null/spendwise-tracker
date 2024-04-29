@@ -5,7 +5,7 @@ import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/input_widgets/blue_border_password_textfield.dart';
 import '../../const_config/color_config.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../utils/validator.dart';
+import '../../services/utils/validator.dart';
 import '../../widgets/custom_buttons/rounded_blue_button.dart';
 import '../../widgets/input_widgets/simple_blue_border_textfield.dart';
 import '../dashboard.dart';

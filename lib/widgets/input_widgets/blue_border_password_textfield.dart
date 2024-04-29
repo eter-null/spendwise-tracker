@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../const_config/color_config.dart';
 import '../../const_config/text_config.dart';
-import '../../utils/validator.dart';
+import '../../services/utils/validator.dart';
 
 
 class BlueBorderPasswordTextField extends StatefulWidget {

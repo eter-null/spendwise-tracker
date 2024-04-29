@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-import '../../utils/database_manipulation/daily_expenses.dart';
+import '../../services/utils/database_manipulation/daily_expenses.dart';
 
 class ExpensesLineGraph extends StatefulWidget {
   final String? month;
