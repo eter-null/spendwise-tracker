@@ -7,7 +7,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import '../../const_config/color_config.dart';
 import '../../const_config/text_config.dart';
-import '../../utils/database_manipulation/totals_by_month.dart';
+import '../../utils/database_manipulation/totals_by_two_month.dart';
 
 
 
@@ -51,62 +51,55 @@ class _GroupedBarChartState extends State<GroupedBarChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          //graph show
-          Expanded(
-            child: StreamBuilder<Map<String, Map<String, double>>>(
-              stream: totalsByMonth.categoryTotalsByMonthStream(widget.month1 ?? '', widget.month2 ?? ''),
-              builder: (BuildContext context, AsyncSnapshot<Map<String, Map<String, double>>> snapshot) {
-                if (widget.month1 == null || widget.month2 == null) {
-                  return Center(child: Text('Please select two months'));
-                }
-                if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                }
+    return Expanded(
+      child: StreamBuilder<Map<String, Map<String, double>>>(
+        stream: totalsByMonth.categoryTotalsByMonthStream(widget.month1 ?? '', widget.month2 ?? ''),
+        builder: (BuildContext context, AsyncSnapshot<Map<String, Map<String, double>>> snapshot) {
+          if (widget.month1 == null || widget.month2 == null) {
+            return Center(child: Text('Please select two months'));
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
 
-                Map<String, Map<String, double>>? categoryTotalsByMonth = snapshot.data;
+          Map<String, Map<String, double>>? categoryTotalsByMonth = snapshot.data;
 
-                // show loading when calculating the totals where it might be null for a while
-                if (categoryTotalsByMonth == null || categoryTotalsByMonth.isEmpty) {
-                  // return Center(child: Text('No data available'));
-                  return Center(child: CircularProgressIndicator());
-                }
+          // show loading when calculating the totals where it might be null for a while
+          if (categoryTotalsByMonth == null || categoryTotalsByMonth.isEmpty) {
+            // return Center(child: Text('No data available'));
+            return Center(child: CircularProgressIndicator());
+          }
 
-                List<String> categories = categoryTotalsByMonth.keys.toList();
-                List<charts.Series<CategorySpendings, String>> seriesList = _createSeries(categories, categoryTotalsByMonth);
+          List<String> categories = categoryTotalsByMonth.keys.toList();
+          List<charts.Series<CategorySpendings, String>> seriesList = _createSeries(categories, categoryTotalsByMonth);
 
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: charts.BarChart(
-                    seriesList,
-                    animate: true,
-                    barGroupingType: charts.BarGroupingType.grouped,
-                    // rotate the axis to prevent text overlap
-                    domainAxis: charts.OrdinalAxisSpec(
-                      renderSpec: charts.SmallTickRendererSpec(
-                        labelRotation: 90,
-                      ),
-                    ),
-                    // fix big blank space in bottom when using domain axis
-                    layoutConfig: charts.LayoutConfig(
-                      leftMarginSpec: charts.MarginSpec.defaultSpec,
-                      topMarginSpec: charts.MarginSpec.defaultSpec,
-                      rightMarginSpec: charts.MarginSpec.defaultSpec,
-                      bottomMarginSpec: charts.MarginSpec.fixedPixel(0), // remove label text blank space accommodation
-                    ),
-                    behaviors: [
-                      charts.SeriesLegend(
-                        position: charts.BehaviorPosition.top,
-                      ),
-                    ],
-                  ),
-                );
-              },
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: charts.BarChart(
+              seriesList,
+              animate: true,
+              barGroupingType: charts.BarGroupingType.grouped,
+              // rotate the axis to prevent text overlap
+              domainAxis: charts.OrdinalAxisSpec(
+                renderSpec: charts.SmallTickRendererSpec(
+                  labelRotation: 90,
+                ),
+              ),
+              // fix big blank space in bottom when using domain axis
+              layoutConfig: charts.LayoutConfig(
+                leftMarginSpec: charts.MarginSpec.defaultSpec,
+                topMarginSpec: charts.MarginSpec.defaultSpec,
+                rightMarginSpec: charts.MarginSpec.defaultSpec,
+                bottomMarginSpec: charts.MarginSpec.fixedPixel(0), // remove label text blank space accommodation
+              ),
+              behaviors: [
+                charts.SeriesLegend(
+                  position: charts.BehaviorPosition.top,
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

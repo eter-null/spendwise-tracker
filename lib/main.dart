@@ -19,6 +19,7 @@ import 'package:spendwise_tracker/screens/auth/login.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/screens/new_expenses_page.dart';
 import 'package:spendwise_tracker/screens/test/datetest.dart';
+import 'package:spendwise_tracker/screens/test/graph_tst.dart';
 import 'package:spendwise_tracker/screens/test/show_bar.dart';
 import 'package:spendwise_tracker/screens/test/test.dart';
 import 'package:spendwise_tracker/screens/test/test2.dart';
@@ -26,6 +27,7 @@ import 'package:spendwise_tracker/screens/test/test2addc.dart';
 import 'package:spendwise_tracker/screens/test/test2adde.dart';
 import 'package:spendwise_tracker/screens/test/test2viewc.dart';
 import 'package:spendwise_tracker/screens/test/test2viewe.dart';
+import 'package:spendwise_tracker/screens/test/test_totals_month.dart';
 import 'package:spendwise_tracker/screens/test/testcat.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
@@ -67,6 +69,8 @@ class MyApp extends StatelessWidget {
       // home: Test2()
       // home: Categories(),
       // home: DateTest(),
+      // home: GraphTest(),
+      // home: MonthlySummary()
     
     );
     

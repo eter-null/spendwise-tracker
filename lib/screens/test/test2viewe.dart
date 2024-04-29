@@ -34,7 +34,7 @@ class _ViewExpenseState extends State<ViewExpense> {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Date: ${data['date'].toString()}'),
+                    Text('Date: ${data['date'].toDate()}'),
                     Text('Expense ID: $expenseID'),
                     // finding the category name from category collection of the expense
                     StreamBuilder(

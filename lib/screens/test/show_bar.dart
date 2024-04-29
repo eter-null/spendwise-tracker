@@ -7,7 +7,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import '../../const_config/color_config.dart';
 import '../../const_config/text_config.dart';
-import '../../utils/database_manipulation/totals_by_month.dart';
+import '../../utils/database_manipulation/totals_by_two_month.dart';
 
 class Testing extends StatefulWidget {
   const Testing({Key? key}) : super(key: key);
@@ -20,8 +20,52 @@ class _TestingState extends State<Testing> {
   String? _selectedMonth1;
   String? _selectedMonth2;
 
-  // instantiate the class to use
-  GetTotalsByMonth totalsByMonth = GetTotalsByMonth();
+  Stream<Map<String, Map<String, double>>> categoryTotalsByMonthStream(String month1, String month2) {
+    // users > categories
+    return FirebaseFirestore.instance
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('categories')
+        .snapshots()
+        .asyncMap((categoriesSnapshot) async {
+      Map<String, Map<String, double>> categoryTotalsByMonth = {}; // dictionary for String
+
+      for (QueryDocumentSnapshot categoryDoc in categoriesSnapshot.docs) {
+        List<dynamic> expenseIDs = categoryDoc['expenseID']; // gets expenseID array vals
+
+        for (dynamic expenseID in expenseIDs) {
+          // goes to the gotten expenseID documents from the category array
+          DocumentSnapshot expenseDoc = await FirebaseFirestore.instance
+              .collection('Users')
+              .doc(FirebaseAuth.instance.currentUser?.uid)
+              .collection('expenses')
+              .doc(expenseID)
+              .get();
+
+          // time conversion from expenseID date value and just using month and year
+          Timestamp timestamp = expenseDoc['date'];
+          DateTime date = timestamp.toDate();
+          String monthYear = DateFormat('MMMM yyyy').format(date);
+
+          // when iterating through the different expenseID docs if the dropdown selected month-year is found add the amount
+          // of those expenseIDs to get the total of that month-year
+
+          if (monthYear == month1 || monthYear == month2) { // if dropdown month-year is found
+            double expenseAmount = expenseDoc['amount'].toDouble();
+
+            categoryTotalsByMonth.putIfAbsent(categoryDoc['name'], () => {});
+
+            categoryTotalsByMonth[categoryDoc['name']]!.update(
+              monthYear,
+                  (value) => value + expenseAmount,
+              ifAbsent: () => expenseAmount,
+            );
+          }
+        }
+      }
+      return categoryTotalsByMonth;
+    });
+  }
 
   List<charts.Series<CategorySpendings, String>> _createSeries(List<String> categories, Map<String, Map<String, double>> data) {
     List<charts.Series<CategorySpendings, String>> seriesList = [];
@@ -87,7 +131,7 @@ class _TestingState extends State<Testing> {
           //graph show
           Expanded(
             child: StreamBuilder<Map<String, Map<String, double>>>(
-              stream: totalsByMonth.categoryTotalsByMonthStream(_selectedMonth1 ?? '', _selectedMonth2 ?? ''),
+              stream: categoryTotalsByMonthStream(_selectedMonth1 ?? '', _selectedMonth2 ?? ''),
               builder: (BuildContext context, AsyncSnapshot<Map<String, Map<String, double>>> snapshot) {
                 if (_selectedMonth1 == null || _selectedMonth2 == null) {
                   return Center(child: Text('Please select two months'));

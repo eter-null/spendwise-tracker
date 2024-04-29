@@ -22,5 +22,6 @@ class MyColor{
   // bar graphs
   static const lightIndigo = Color(0xFFAF8BF9);
   static const lavenderPink = Color(0xFFFDBCF2);
+  static const slightGray = Color(0xE0EAEAEA);
 
 }

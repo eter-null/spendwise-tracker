@@ -11,7 +11,7 @@ class GetTotalsByMonth {
           .collection('categories')
           .snapshots()
           .asyncMap((categoriesSnapshot) async {
-        Map<String, Map<String, double>> categoryTotalsByMonth = {};
+        Map<String, Map<String, double>> categoryTotalsByMonth = {}; // <category name <date, amount>>
 
         for (QueryDocumentSnapshot categoryDoc in categoriesSnapshot.docs) {
           List<dynamic> expenseIDs = categoryDoc['expenseID']; // gets expenseID array vals
