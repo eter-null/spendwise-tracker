@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
-import 'package:spendwise_tracker/screens/test/graph_tst.dart';
-import 'package:spendwise_tracker/screens/test/show_bar.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spendwise_tracker/widgets/data_plotting/grouped_bar_chart.dart';
@@ -16,7 +14,7 @@ import '../utils/database_manipulation/daily_earnings.dart';
 import '../utils/database_manipulation/daily_expenses.dart';
 import '../widgets/custom_page/custom_pageview.dart';
 import '../widgets/data_plotting/expenses_line_graph.dart';
-import '../utils/database_manipulation/monthly_amount.dart';
+
 
 
 class AnalysisPage extends StatefulWidget {
