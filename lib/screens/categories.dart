@@ -68,6 +68,7 @@ class _CategoriesState extends State<Categories> {
                           String categoryID = document.id;
                           String name = data['name'];
                           String icon = data['icon'];
+                          //print(icon);
 
 
                           // List<dynamic> expenseIDs = data['expenseID'] ?? [];

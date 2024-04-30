@@ -7,9 +7,8 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Stack(
+    return Stack(
       children: [
-        
         CustomBackground(
           isNavbar: true,
           child: Scaffold(

@@ -54,10 +54,10 @@ class IntroductionScreens extends StatelessWidget {
               ),
             ],
             onDone: () {
-             // if (kDebugMode) {
-               // print("Done clicked");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignUp()));
-             // }
+              // if (kDebugMode) {
+              // print("Done clicked");
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignUp()));
+              // }
             },
             scrollPhysics: const ClampingScrollPhysics(),
             showDoneButton: true,
@@ -78,38 +78,38 @@ class IntroductionScreens extends StatelessWidget {
             dotsDecorator: getDotsDecorator(),
           ),
         ),
-       // Scaffold(
-       //   appBar: AppBar(),
-      //    body: 
-          
-       // ),
+        // Scaffold(
+        //   appBar: AppBar(),
+        //    body:
+
+        // ),
       ],
     );
   }
 
   Widget buildImage(String? imagePath) {
     if (imagePath != null && imagePath.isNotEmpty) {
-    return Center(
-      child: Image.asset(
-        imagePath,
-        width: 450,
-        height: 200,
-      ),
-    );
-  } else {
-    // Placeholder widget when image path is null or empty
-    return const Placeholder(
-      fallbackWidth: 450,
-      fallbackHeight: 200,
-    );
+      return Center(
+        child: Image.asset(
+          imagePath,
+          width: 450,
+          height: 200,
+        ),
+      );
+    } else {
+      // Placeholder widget when image path is null or empty
+      return const Placeholder(
+        fallbackWidth: 450,
+        fallbackHeight: 200,
+      );
+    }
   }
-}
 
   PageDecoration getPageDecoration() {
     return PageDecoration(
       boxDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color:Colors.white,  
+        color:Colors.white,
       ),
       imagePadding: EdgeInsets.only(top: 50),
       imageFlex: 2,

@@ -21,7 +21,6 @@ Future<void> updateCategory(String categoryId, String newName, String icon) asyn
       'name': newName,
       'icon': icon,
         });
-    print('Category name updated successfully');
 }
 
 Future<void> addCategory(String name, String icon) async {
@@ -36,5 +35,4 @@ Future<void> addCategory(String name, String icon) async {
           'expenseID': [],
         }
     );
-    print('Category name updated successfully');
 }

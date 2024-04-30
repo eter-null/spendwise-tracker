@@ -18,7 +18,7 @@ class _FinancialGoals extends State<FinancialGoals> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-        children: const [
+        children:[
           CustomBackground(
               isNavbar: true,
 

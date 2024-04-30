@@ -6,12 +6,12 @@ import '../const_config/color_config.dart';
 
 class CustomBackground extends StatelessWidget {
   final Widget child;
-  final bool isNavbar;
+	bool? isNavbar;
   final EdgeInsetsGeometry margin;
-  const CustomBackground({
+   CustomBackground({
     super.key,
     required this.child,
-    required this.isNavbar,
+		this.isNavbar,
     this.margin = const EdgeInsets.only(top: 150, bottom: 60, left: 30, right: 30),
   });
 
@@ -48,7 +48,7 @@ class CustomBackground extends StatelessWidget {
              ),
     ],
       ),
-    bottomNavigationBar: isNavbar?buildMyNavBar(context):null,
+			bottomNavigationBar: isNavbar ?? true ? buildMyNavBar(context) : null,
     );
   }
 }
