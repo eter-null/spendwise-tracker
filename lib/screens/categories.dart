@@ -31,7 +31,7 @@ class _CategoriesState extends State<Categories> {
           isNavbar: true,
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height * 0.15,
-              bottom: 70,
+              bottom: 30,
               left: 30,
               right: 30),
           child: Scaffold(
@@ -245,7 +245,7 @@ class _CategoriesState extends State<Categories> {
         Center(
           child: Column(
             children: [
-              SizedBox(height: 80),
+              SizedBox(height: 60),
               Text(
                 'Categories',
                 style: TextStyle(

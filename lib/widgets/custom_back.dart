@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:spendwise_tracker/screens/analysis_page.dart';
+import 'package:spendwise_tracker/screens/categories.dart';
+import 'package:spendwise_tracker/screens/expenses_page.dart';
+import 'package:spendwise_tracker/widgets/custom_modals/addExpenseModal.dart';
 
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
 
@@ -37,7 +41,7 @@ class CustomBackground extends StatelessWidget {
 
               margin: margin,
               width: MediaQuery.of(context).size.width,
-
+              
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -78,9 +82,7 @@ class CustomBackground extends StatelessWidget {
 		), 
 		IconButton( 
 			enableFeedback: false, 
-			onPressed: () { 
-			 
-			}, 
+			onPressed:()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> Categories())), 
 			icon: const Icon( 
 					Icons.category_sharp, 
 					color: Colors.white, 
@@ -90,10 +92,8 @@ class CustomBackground extends StatelessWidget {
 		),
 		IconButton(
 				enableFeedback: false,
-				onPressed: () {
+				onPressed:()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ExpensesPage())), 
 
-
-				},
 				icon: const Icon(
 					Icons.add,
 					color: Colors.white,
@@ -102,10 +102,8 @@ class CustomBackground extends StatelessWidget {
 		),
 		IconButton(
 		enableFeedback: false,
-		onPressed: () {
+		onPressed:()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> AnalysisPage())), 
 
-
-		},
 		icon: const Icon(
 				Icons.align_vertical_bottom_sharp,
 				color: Colors.white,

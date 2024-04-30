@@ -65,7 +65,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
         CustomBackground(
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height * 0.15,
-              bottom: 70,
+              bottom: 30,
               left: 30,
               right: 30),
           child: Scaffold(
@@ -235,7 +235,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
         Center(
           child: Column(
             children: [
-              SizedBox(height: 80),
+              SizedBox(height: 60),
               Text(
                 'Expenses',
                 style: TextStyle(
