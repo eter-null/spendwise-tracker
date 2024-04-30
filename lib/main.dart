@@ -57,10 +57,10 @@ class MyApp extends StatelessWidget {
       // home: FinancialGoals()
       // home: Dashboard()
       // home: SignUp()
-      // home: Login()
+      home: Login()
       // home: AnalysisPage()
       // home: AddExpensePage(),
-      home: Categories(),
+      // home: Categories(),
       // home: AddCategoryModal(),
 
       // home: ViewCategories()

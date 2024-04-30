@@ -2,8 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
+import 'package:spendwise_tracker/screens/auth/login.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
+import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
 // import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
 
 class IntroductionScreens extends StatelessWidget {
@@ -14,7 +16,9 @@ class IntroductionScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CustomBackground(
+        ScaffoldWithBackground(),
+        Padding(
+          padding: const EdgeInsets.only(left:20, right:20, top:80,bottom:60),
           child: IntroductionScreen(
             pages: <PageViewModel>[
               PageViewModel(
@@ -49,10 +53,10 @@ class IntroductionScreens extends StatelessWidget {
               ),
             ],
             onDone: () {
-              if (kDebugMode) {
-                print("Done clicked");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Dashboard()));
-              }
+             // if (kDebugMode) {
+               // print("Done clicked");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Login()));
+             // }
             },
             scrollPhysics: const ClampingScrollPhysics(),
             showDoneButton: true,
@@ -72,7 +76,7 @@ class IntroductionScreens extends StatelessWidget {
             ),
             dotsDecorator: getDotsDecorator(),
           ),
-          ),
+        ),
        // Scaffold(
        //   appBar: AppBar(),
       //    body: 
@@ -101,10 +105,14 @@ class IntroductionScreens extends StatelessWidget {
 }
 
   PageDecoration getPageDecoration() {
-    return const PageDecoration(
+    return PageDecoration(
+      boxDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color:Colors.white,  
+      ),
       imagePadding: EdgeInsets.only(top: 50),
       imageFlex: 2,
-      pageColor: Colors.white,
+      // pageColor: Colors.white,
       bodyPadding: EdgeInsets.only(top: 8, left: 20, right: 20),
       titlePadding: EdgeInsets.only(top: 15),
       bodyTextStyle: TextStyle(color: MyColor.fadedText, fontSize: 15),

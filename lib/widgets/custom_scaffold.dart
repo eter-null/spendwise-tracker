@@ -33,7 +33,7 @@ class ScaffoldWithBackground extends StatelessWidget {
         ],
  // ),
       ),
-      bottomNavigationBar: buildMyNavBar(context),
+      // bottomNavigationBar: buildMyNavBar(context),
     );
   }
 }
@@ -47,69 +47,69 @@ Container buildMyNavBar(BuildContext context) {
 		topRight: Radius.circular(20), 
 		), 
 	), 
-	child: Row( 
-		mainAxisAlignment: MainAxisAlignment.spaceAround, 
-		children: [ 
-		IconButton( 
-			enableFeedback: false, 
-			onPressed: () { 
+	// child: Row( 
+	// 	mainAxisAlignment: MainAxisAlignment.spaceAround, 
+	// 	children: [ 
+	// 	IconButton( 
+	// 		enableFeedback: false, 
+	// 		onPressed: () { 
 			 
-			}, 
-			icon: const Icon( 
-					Icons.home_filled, 
-					color: Colors.white, 
-					size: 35, 
-				)  
-		), 
-		IconButton( 
-			enableFeedback: false, 
-			onPressed: () { 
+	// 		}, 
+	// 		icon: const Icon( 
+	// 				Icons.home_filled, 
+	// 				color: Colors.white, 
+	// 				size: 35, 
+	// 			)  
+	// 	), 
+	// 	IconButton( 
+	// 		enableFeedback: false, 
+	// 		onPressed: () { 
 			 
-			}, 
-			icon: const Icon( 
-					Icons.work_rounded, 
-					color: Colors.white, 
-					size: 35, 
-				) 
+	// 		}, 
+	// 		icon: const Icon( 
+	// 				Icons.work_rounded, 
+	// 				color: Colors.white, 
+	// 				size: 35, 
+	// 			) 
 
-		),
-		IconButton(
-				enableFeedback: false,
-				onPressed: () {
-
-
-				},
-				icon: const Icon(
-					Icons.add,
-					color: Colors.white,
-					size: 35,
-				)
-		),
-		IconButton(
-		enableFeedback: false,
-		onPressed: () {
+	// 	),
+	// 	IconButton(
+	// 			enableFeedback: false,
+	// 			onPressed: () {
 
 
-		},
-		icon: const Icon(
-				Icons.widgets_rounded,
-				color: Colors.white,
-				size: 35,
-			)
-	),
-		IconButton( 
-			enableFeedback: false, 
-			onPressed: () { 
+	// 			},
+	// 			icon: const Icon(
+	// 				Icons.add,
+	// 				color: Colors.white,
+	// 				size: 35,
+	// 			)
+	// 	),
+	// 	IconButton(
+	// 	enableFeedback: false,
+	// 	onPressed: () {
+
+
+	// 	},
+	// 	icon: const Icon(
+	// 			Icons.widgets_rounded,
+	// 			color: Colors.white,
+	// 			size: 35,
+	// 		)
+	// ),
+	// 	IconButton( 
+	// 		enableFeedback: false, 
+	// 		onPressed: () { 
 			
-			}, 
-			icon: const Icon( 
-					Icons.person, 
-					color: Colors.white, 
-					size: 35, 
-				) 
+	// 		}, 
+	// 		icon: const Icon( 
+	// 				Icons.person, 
+	// 				color: Colors.white, 
+	// 				size: 35, 
+	// 			) 
 
-		), 
-		], 
-	), 
+	// 	), 
+	// 	], 
+	// ), 
 	); 
 }
