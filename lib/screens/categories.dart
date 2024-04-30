@@ -28,6 +28,7 @@ class _CategoriesState extends State<Categories> {
     return Stack(
       children: [
         CustomBackground(
+          isNavbar: true,
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height * 0.15,
               bottom: 70,

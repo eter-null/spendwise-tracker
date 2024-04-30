@@ -27,6 +27,7 @@ class _AddDebtPage extends State<AddDebtPage> {
     return Stack(
         children: [
           CustomBackground(
+              isNavbar: true,
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Column(

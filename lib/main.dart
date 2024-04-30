@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: IntroductionScreens()
+      home: IntroductionScreens()
       // home: DebtPage()
       // home: AddDebtPage()
       // home: AddExpensePage()
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       // home: FinancialGoals()
       // home: Dashboard()
       // home: SignUp()
-      home: Login()
+      // home: Login()
       // home: AnalysisPage()
       // home: AddExpensePage(),
       // home: Categories(),

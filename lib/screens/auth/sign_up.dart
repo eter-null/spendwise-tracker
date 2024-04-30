@@ -35,6 +35,7 @@ class _SignUpState extends State<SignUp> {
     return Stack(
         children: [
           CustomBackground(
+            isNavbar: false,
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Padding(

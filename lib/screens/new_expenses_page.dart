@@ -28,6 +28,8 @@ class _NewExpensesPage extends State<NewExpensesPage> {
     return Stack(
         children: [
           CustomBackground(
+              isNavbar: true,
+
               child: Scaffold(
                 resizeToAvoidBottomInset: false,
                 body: Column(

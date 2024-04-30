@@ -40,6 +40,7 @@ class _AnalysisPage extends State<AnalysisPage> {
     return Stack(
         children: [
           CustomBackground(
+            isNavbar: true,
             margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.09, bottom: 70, left: 30, right: 30),
               child: Scaffold(
                   resizeToAvoidBottomInset: false,

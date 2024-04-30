@@ -32,6 +32,7 @@ class _LoginState extends State<Login> {
     return Stack(
         children: [
           CustomBackground(
+            isNavbar: false,
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Padding(

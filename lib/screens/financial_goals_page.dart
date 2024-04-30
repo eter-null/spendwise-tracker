@@ -20,6 +20,8 @@ class _FinancialGoals extends State<FinancialGoals> {
     return Stack(
         children: const [
           CustomBackground(
+              isNavbar: true,
+
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Padding(padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),

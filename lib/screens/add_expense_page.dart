@@ -32,6 +32,7 @@ class _AddExpensePage extends State<AddExpensePage> {
     return Stack(
         children: [
           CustomBackground(
+            isNavbar: true,
               child: Scaffold(
                 resizeToAvoidBottomInset: false,
                 body: Padding(

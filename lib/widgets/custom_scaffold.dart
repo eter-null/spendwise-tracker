@@ -37,16 +37,16 @@ class ScaffoldWithBackground extends StatelessWidget {
     );
   }
 }
-Container buildMyNavBar(BuildContext context) { 
-	return Container( 
-	height: 60, 
-	decoration: BoxDecoration( 
-		color: MyColor.blueFadedBackground, 
-		borderRadius: const BorderRadius.only( 
-		topLeft: Radius.circular(20), 
-		topRight: Radius.circular(20), 
-		), 
-	), 
+// Container buildMyNavBar(BuildContext context) { 
+// 	return Container( 
+// 	height: 60, 
+// 	decoration: BoxDecoration( 
+// 		color: MyColor.blueFadedBackground, 
+// 		borderRadius: const BorderRadius.only( 
+// 		topLeft: Radius.circular(20), 
+// 		topRight: Radius.circular(20), 
+// 		), 
+// 	), 
 	// child: Row( 
 	// 	mainAxisAlignment: MainAxisAlignment.spaceAround, 
 	// 	children: [ 
@@ -111,5 +111,5 @@ Container buildMyNavBar(BuildContext context) {
 	// 	), 
 	// 	], 
 	// ), 
-	); 
-}
+// 	); 
+// }

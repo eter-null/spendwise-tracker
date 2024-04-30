@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/screens/auth/login.dart';
+import 'package:spendwise_tracker/screens/auth/sign_up.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
@@ -55,7 +56,7 @@ class IntroductionScreens extends StatelessWidget {
             onDone: () {
              // if (kDebugMode) {
                // print("Done clicked");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Login()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignUp()));
              // }
             },
             scrollPhysics: const ClampingScrollPhysics(),

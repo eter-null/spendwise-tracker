@@ -23,6 +23,7 @@ class _DebtPage extends State<DebtPage> {
     return Stack(
         children: [
           CustomBackground(
+            isNavbar: true,
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Padding(padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
