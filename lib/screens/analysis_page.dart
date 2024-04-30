@@ -41,7 +41,7 @@ class _AnalysisPage extends State<AnalysisPage> {
         children: [
           CustomBackground(
             isNavbar: true,
-            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.09, bottom: 70, left: 30, right: 30),
+            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15, bottom: 60, left: 30, right: 30),
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: Padding(
@@ -197,6 +197,24 @@ class _AnalysisPage extends State<AnalysisPage> {
                   )
               )
           ),
+          Center(
+          child: Column(
+            children: [
+              SizedBox(height: 70),
+              Text(
+                'Analysis',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Roboto',
+                  color: Colors.white,
+                  fontSize: 25,
+                  letterSpacing: 0,
+                  decoration: TextDecoration.none,
+                ),
+              ),
+            ],
+          ),
+        ),
         ]
     );
   }

@@ -18,7 +18,9 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
     final FirebaseAuth auth = FirebaseAuth.instance;
-
+    final firestore=FirebaseFirestore.instance
+                  .collection('Users')
+                  .doc(FirebaseAuth.instance.currentUser?.uid);
   late User user;
   Future<void>getUserData()async{
     User userData=auth.currentUser!;
@@ -53,7 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   body: Padding(padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Column(
                       children: [
-                        SizedBox(height: 50),
+                        
+                        SizedBox(height: 120),
                         Center(
                           child: Profile(
                             imageUrl: 'https://img.freepik.com/premium-photo/view-three-dimensional-animated-cartoon-bird_23-2150946471.jpg',
@@ -71,7 +74,24 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),)
               )
         ),
-        
+        Center(
+          child: Column(
+            children: [
+              SizedBox(height: 100),
+              Text(
+                'Profile',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Roboto',
+                  color: Colors.white,
+                  fontSize: 25,
+                  letterSpacing: 0,
+                  decoration: TextDecoration.none,
+                ),
+              ),
+            ],
+          ),
+        ),
         ]);
   }
 }
