@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spendwise_tracker/screens/analysis_page.dart';
 import 'package:spendwise_tracker/screens/categories.dart';
+import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/screens/expenses_page.dart';
 import 'package:spendwise_tracker/widgets/custom_modals/addExpenseModal.dart';
 
@@ -71,9 +72,8 @@ class CustomBackground extends StatelessWidget {
 		children: [ 
 		IconButton( 
 			enableFeedback: false, 
-			onPressed: () { 
-			 
-			}, 
+			onPressed:()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard())), 
+ 
 			icon: const Icon( 
 					Icons.home_filled, 
 					color: Colors.white, 

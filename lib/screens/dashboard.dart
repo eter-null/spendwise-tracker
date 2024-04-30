@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spendwise_tracker/const_config/color_config.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_containers/label_amount_box.dart';
 
@@ -21,21 +22,26 @@ class Dashboard extends StatelessWidget {
                           label: 'Total Spent',
                           amount: 2000,
                         ),
-                        SizedBox(height: 15),
+                        SizedBox(height: 30),
                         LabelAmountBox(
                           label: 'Total Expenses',
                           amount: 500,
                         ),
-                        SizedBox(height: 20),
-                        Text(
-                          'Expenses Chart',
+                        SizedBox(height: 180),
+                        ElevatedButton(
+                          onPressed: (){}, 
+                          style: ButtonStyle(backgroundColor:MaterialStatePropertyAll<Color>(MyColor.lightBlue)),
+                          child: Text(
+                          'Add Income',
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF72B4EC),
+                            color: Colors.white,
                             fontFamily: 'Roboto',
                             fontSize: 20
                           ),
                         ),
+                        )
+                        
                         
                       ],
                     ),)
