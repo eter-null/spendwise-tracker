@@ -3,6 +3,7 @@ import 'package:spendwise_tracker/screens/analysis_page.dart';
 import 'package:spendwise_tracker/screens/categories.dart';
 import 'package:spendwise_tracker/screens/dashboard.dart';
 import 'package:spendwise_tracker/screens/expenses_page.dart';
+import 'package:spendwise_tracker/screens/profile.dart';
 import 'package:spendwise_tracker/widgets/custom_modals/addExpenseModal.dart';
 
 import 'package:spendwise_tracker/widgets/custom_scaffold.dart';
@@ -112,9 +113,8 @@ class CustomBackground extends StatelessWidget {
 	),
 		IconButton( 
 			enableFeedback: false, 
-			onPressed: () { 
-			
-			}, 
+			onPressed:()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage())), 
+
 			icon: const Icon( 
 					Icons.person, 
 					color: Colors.white, 

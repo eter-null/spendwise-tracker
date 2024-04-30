@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:spendwise_tracker/const_config/color_config.dart';
+import 'package:spendwise_tracker/screens/auth/login.dart';
 import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_containers/label_amount_box.dart';
 
 class Dashboard extends StatelessWidget {
-  const Dashboard({super.key});
+
+   const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +17,7 @@ class Dashboard extends StatelessWidget {
         CustomBackground(
           isNavbar: true,
           child: Scaffold(
+          
                   resizeToAvoidBottomInset: false,
                   body: Padding(padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Column(
