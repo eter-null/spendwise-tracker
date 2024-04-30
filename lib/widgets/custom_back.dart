@@ -82,7 +82,7 @@ class CustomBackground extends StatelessWidget {
 			 
 			}, 
 			icon: const Icon( 
-					Icons.work_rounded, 
+					Icons.category_sharp, 
 					color: Colors.white, 
 					size: 35, 
 				) 
@@ -107,7 +107,7 @@ class CustomBackground extends StatelessWidget {
 
 		},
 		icon: const Icon(
-				Icons.widgets_rounded,
+				Icons.align_vertical_bottom_sharp,
 				color: Colors.white,
 				size: 35,
 			)

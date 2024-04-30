@@ -34,7 +34,7 @@ class Dashboard extends StatelessWidget {
                             fontWeight: FontWeight.w800,
                             color: Color(0xFF72B4EC),
                             fontFamily: 'Roboto',
-                            fontSize: 10
+                            fontSize: 20
                           ),
                         ),
                         
