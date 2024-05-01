@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import '../../const_config/color_config.dart';
+import '../../services/notification_service.dart';
+import '../../services/utils/database_manipulation/income_expenses_diff.dart';
 import '../custom_buttons/rounded_blue_button.dart';
 
 import '../../services/utils/database_manipulation/expense_mod.dart';
@@ -174,7 +176,9 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
           child: Text('Cancel'),
         ),
         RoundedBlueButton(
-          onClick: () {
+          onClick: () async {
+            // if function != null show noti else dont
+            await checkExpenseNotification();
             addExpense(
               selectedCategoryID!,
               double.tryParse(amountController.text.trim()) ?? 0.0,

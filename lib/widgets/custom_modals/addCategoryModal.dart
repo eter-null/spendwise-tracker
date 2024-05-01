@@ -93,7 +93,7 @@ class _AddCategoryModalState extends State<AddCategoryModal> {
             addCategory(name, iconPath);
             Navigator.of(context).pop();
           },
-          label: 'Save',
+          label: 'Add',
           width: 30,
           backgroundColor: MyColor.yinminBlue,
         ),
