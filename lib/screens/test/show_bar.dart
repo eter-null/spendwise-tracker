@@ -41,7 +41,7 @@ class _TestingState extends State<Testing> {
               .collection('expenses')
               .doc(expenseID)
               .get();
-
+          print(expenseID);
           // time conversion from expenseID date value and just using month and year
           Timestamp timestamp = expenseDoc['date'];
           DateTime date = timestamp.toDate();

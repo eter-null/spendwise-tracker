@@ -10,6 +10,7 @@ import 'package:spendwise_tracker/widgets/custom_back.dart';
 import 'package:spendwise_tracker/widgets/custom_buttons/rounded_blue_button.dart';
 import '../services/utils/database_manipulation/expense_mod.dart';
 import '../widgets/custom_modals/addExpenseModal.dart';
+import '../widgets/custom_modals/editExpenseModal.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({Key? key});
@@ -19,12 +20,11 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPageState extends State<ExpensesPage> {
-  final String userId = FirebaseAuth.instance.currentUser!.uid; // Get current user ID
 
   Stream<List<Map<String, dynamic>>> _getExpensesStream() {
     return FirebaseFirestore.instance
         .collection('Users')
-        .doc(userId)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('expenses')
         .orderBy('date', descending: true) // Sort expenses by date, most recent first
         .snapshots()
@@ -42,7 +42,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
   Future<String> getCategoryName(String categoryId) async {
     final categoryDoc = await FirebaseFirestore.instance
         .collection('Users')
-        .doc(userId)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('categories')
         .doc(categoryId)
         .get();
@@ -51,11 +51,11 @@ class _ExpensesPageState extends State<ExpensesPage> {
   Future<String> getCategoryIcon(String categoryId) async {
     final categoryDoc = await FirebaseFirestore.instance
         .collection('Users')
-        .doc(userId)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('categories')
         .doc(categoryId)
         .get();
-    print(categoryDoc['icon'] as String);
+    //print(categoryDoc['icon'] as String);
     return categoryDoc['icon'] as String;
   }
   @override
@@ -83,7 +83,6 @@ class _ExpensesPageState extends State<ExpensesPage> {
                         }
 
                         final expenses = snapshot.data ?? [];
-
                         if (expenses.isEmpty) {
                           return Center(child: Text('No expenses found'));
                         }
@@ -91,38 +90,34 @@ class _ExpensesPageState extends State<ExpensesPage> {
                         return ListView.builder(
                           itemCount: expenses.length,
                           itemBuilder: (context, index) {
-                            final expense = expenses[index];
+                            final expense = expenses[index]; // builds list with its index as expense id
+
                             return Column(
                               children: [
                                 ListTile(
                                   leading: FutureBuilder<String>(
                                     future: getCategoryIcon(expense['categoryId'] as String),
                                     builder: (context, snapshot) {
-                                      if (snapshot.connectionState == ConnectionState.waiting) {
-                                        return Text('Loading...');
-                                      }
                                       if (snapshot.hasData) {
+                                        //print(snapshot.data!);
                                         return Image.asset(
-                                          snapshot.data!,
+                                          snapshot.data!, // category icon returned in snapshot
                                           width: 30,
                                           height: 30,
                                         );
                                       } else {
-                                        return Icon(Icons.category);
+                                        return Icon(Icons.photo);
                                       }
                                     },
                                   ),
                                   title: FutureBuilder<String>(
                                     future: getCategoryName(expense['categoryId'] as String),
                                     builder: (context, snapshot) {
-                                      if (snapshot.connectionState == ConnectionState.waiting) {
-                                        return Text('Loading...');
-                                      }
                                       return Text(snapshot.data ?? 'Category Name');
                                     },
                                   ),
                                   subtitle: Text(
-                                    '\$${expense['amount'].toStringAsFixed(2)}\n'
+                                    'BDT ${expense['amount'].toStringAsFixed(2)}\n'
                                         '${DateFormat('dd, MMMM yyyy').format(expense['date'] as DateTime)}',
                                   ),
                                   trailing: Row(
@@ -145,7 +140,23 @@ class _ExpensesPageState extends State<ExpensesPage> {
                                                   animation,
                                                   Animation<double>
                                                   secondaryAnimation) {
-                                                return Placeholder();
+                                                return EditExpenseModal(
+                                                  expenseID: expense['id'],
+                                                  amount: expense['amount'].toDouble(),
+                                                  categoryID: expense['categoryId'],
+                                                  categoryName: '',
+                                                  categoryIcon: FutureBuilder<String>(
+                                                    future: getCategoryIcon(expense['categoryId'] as String),
+                                                    builder: (context, snapshot) {
+                                                      if (snapshot.hasData) {
+                                                        print(snapshot.data);
+                                                        return Text(snapshot.data.toString());
+                                                      } else {
+                                                        return Text('no icon');
+                                                      }
+                                                    },
+                                                  ).toString(),
+                                                );
                                               },
                                               barrierDismissible: true,
                                               barrierLabel: '',
@@ -179,7 +190,10 @@ class _ExpensesPageState extends State<ExpensesPage> {
                                               .blueFadedBackground, // foreground
                                         ),
                                         onPressed: () {
-                                          deleteExpense(expense['id'] as String);
+                                          deleteExpense(
+                                              expense['id'],
+                                              expense['categoryId']
+                                          );
                                         },
                                         iconSize: 20,
                                         icon: Icon(Icons.delete),
@@ -224,7 +238,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
                         );
                       }
                     },
-                    label: 'Add Category',
+                    label: 'Add Expenses',
                     width: 200,
                   )
                 ],

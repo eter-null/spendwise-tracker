@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../const_config/color_config.dart';
 import '../../services/utils/database_manipulation/category_mod.dart';
 import '../custom_buttons/rounded_blue_button.dart';
 import '../input_widgets/simple_blue_border_textfield.dart';
+
 
 class AddCategoryModal extends StatefulWidget {
   const AddCategoryModal({Key? key}) : super(key: key);
@@ -17,15 +20,23 @@ class _AddCategoryModalState extends State<AddCategoryModal> {
   final categoryNameController = TextEditingController();
 
   final List<Map<String, String>> icons = [
-    {'path': 'assets/images/browser.png'},
-    {'path': 'assets/images/gas-pump.png'},
-    {'path': 'assets/images/fast-food.png'},
-    {'path': 'assets/images/tax.png'},
-    {'path': 'assets/images/grocery.png'},
-    {'path': 'assets/images/healthcare.png'},
-    {'path': 'assets/images/transportation.png'},
-    {'path': 'assets/images/more.png'},
-  ];
+    'browser.png',
+    'fast-food.png',
+    'gas-pump.png',
+    'grocery.png',
+    'healthcare.png',
+    'invoice.png',
+    'loan.png',
+    'medicine.png',
+    'pet.png',
+    'plant.png',
+    'rent.png',
+    'tax.png',
+    'transportation.png',
+    'more.png',
+  ].map((imageName) {
+    return {'path': 'assets/images/$imageName'};
+  }).toList();
 
   @override
   Widget build(BuildContext context) {

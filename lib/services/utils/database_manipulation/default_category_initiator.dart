@@ -10,9 +10,9 @@ class DatabaseInitializer {
 
     // Define the default categories
     List<Map<String, dynamic>> defaultCategories = [
-      {'name': 'Browser', 'icon': 'assets/images/browser.png', 'expenseID': []},
+      {'name': 'Internet', 'icon': 'assets/images/browser.png', 'expenseID': []},
       {'name': 'Gas', 'icon': 'assets/images/gas-pump.png', 'expenseID': []},
-      {'name': 'Fast Food', 'icon': 'assets/images/fast-food.png', 'expenseID': []},
+      {'name': 'Food', 'icon': 'assets/images/fast-food.png', 'expenseID': []},
       {'name': 'Tax', 'icon': 'assets/images/tax.png', 'expenseID': []},
       {'name': 'Grocery', 'icon': 'assets/images/grocery.png', 'expenseID': []},
       {'name': 'Health', 'icon': 'assets/images/healthcare.png', 'expenseID': []},

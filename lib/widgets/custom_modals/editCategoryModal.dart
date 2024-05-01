@@ -26,15 +26,23 @@ class _EditCategoryModalState extends State<EditCategoryModal> {
   final categoryNameController = TextEditingController();
 
   final List<Map<String, String>> icons = [
-    {'path': 'assets/images/browser.png'},
-    {'path': 'assets/images/gas-pump.png'},
-    {'path': 'assets/images/fast-food.png'},
-    {'path': 'assets/images/tax.png'},
-    {'path': 'assets/images/grocery.png'},
-    {'path': 'assets/images/healthcare.png'},
-    {'path': 'assets/images/transportation.png'},
-    {'path': 'assets/images/more.png'},
-  ];
+    'browser.png',
+    'fast-food.png',
+    'gas-pump.png',
+    'grocery.png',
+    'healthcare.png',
+    'invoice.png',
+    'loan.png',
+    'medicine.png',
+    'pet.png',
+    'plant.png',
+    'rent.png',
+    'tax.png',
+    'transportation.png',
+    'more.png',
+  ].map((imageName) {
+    return {'path': 'assets/images/$imageName'};
+  }).toList();
 
   @override
   void initState() {

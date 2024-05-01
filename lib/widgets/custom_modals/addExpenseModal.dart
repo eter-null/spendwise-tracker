@@ -21,10 +21,17 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
 
   List<DropdownMenuItem<String>> buildDropdownItems(
       List<Map<String, dynamic>> categories) {
-    return categories.map((category) {
+    print(categories);
+    return categories.map((category) { // Map<String, dynamic> category
       return DropdownMenuItem<String>(
         value: category['id'],
-        child: Text(category['name']),
+        child: Row(
+          children: [
+            Image.asset(category['icon'], width: 40, height: 40),
+            SizedBox(width: 10,),
+            Text(category['name']),
+          ],
+        ),
       );
     }).toList();
   }
@@ -98,7 +105,6 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
               onTap: () => selectDate(context),
               child: InputDecorator(
                 decoration: InputDecoration(
-                  labelText: 'Date',
                   border: OutlineInputBorder(),
                 ),
                 child: Row(
@@ -126,7 +132,7 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
                 }
                 List<Map<String, dynamic>> categories =
                     snapshot.data!.docs.map((doc) {
-                  return {'id': doc.id, 'name': doc['name']};
+                  return {'id': doc.id, 'name': doc['name'], 'icon' :doc['icon']};
                 }).toList();
                 return DropdownButtonFormField<String>(
                   value: selectedCategoryID,
@@ -159,8 +165,8 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
             );
             Navigator.of(context).pop();
           },
-          label: 'Add Expense',
-          width: 65,
+          label: 'Add',
+          width: 40,
           backgroundColor: MyColor.yinminBlue,
         ),
 

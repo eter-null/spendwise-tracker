@@ -1,16 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future<void> deleteExpense(String expenseId) async {
+Future<void> deleteExpense(String expenseId, String categoryId) async {
   await FirebaseFirestore.instance
       .collection('Users')
       .doc(FirebaseAuth.instance.currentUser?.uid)
       .collection('expenses')
       .doc(expenseId)
       .delete();
+
+  final categoryRef = FirebaseFirestore.instance
+      .collection('Users')
+      .doc(FirebaseAuth.instance.currentUser?.uid)
+      .collection('categories')
+      .doc(categoryId);
+
+  final categorySnapshot = await categoryRef.get();
+  final expenseIds = categorySnapshot.data()?['expenseID'] as List<dynamic>;
+
+  if (expenseIds != null && expenseIds.contains(expenseId)) {
+    expenseIds.remove(expenseId);
+    await categoryRef.update({'expenseID': expenseIds});
+    print(' $expenseId deleted');
+  }
 }
 
-Future<void> updateExpense(String expenseId, String categoryId, double amount, DateTime date) async {
+Future<void> updateExpense(String expenseId, String categoryId, double amount) async {
   await FirebaseFirestore.instance
       .collection('Users')
       .doc(FirebaseAuth.instance.currentUser?.uid)
@@ -19,7 +34,6 @@ Future<void> updateExpense(String expenseId, String categoryId, double amount, D
       .update({
     'categoryID': categoryId,
     'amount': amount,
-    'date': date,
   });
 }
 
