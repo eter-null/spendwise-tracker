@@ -112,7 +112,7 @@ class _EditExpenseModalState extends State<EditExpenseModal> {
                   decoration: InputDecoration(
                     labelText: "Category",
                     filled: true,
-                    fillColor: Colors.grey[200],
+                    fillColor: MyColor.slightGray,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                       borderSide: BorderSide.none,

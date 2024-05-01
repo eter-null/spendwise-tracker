@@ -6,6 +6,7 @@ import '../../const_config/color_config.dart';
 import '../custom_buttons/rounded_blue_button.dart';
 
 import '../../services/utils/database_manipulation/expense_mod.dart';
+import '../input_widgets/textfield_with_sidebar.dart';
 
 class AddExpenseModal extends StatefulWidget {
   const AddExpenseModal({Key? key}) : super(key: key);
@@ -95,17 +96,25 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(
+            TextFieldWithSidebar(
               controller: amountController,
-              decoration: InputDecoration(labelText: 'Amount'),
-              keyboardType: TextInputType.number,
+              hintText: '',
+              needValidation: false,
+              errorMessage: '',
+              fieldTitle: 'Amount',
+              sidebarLabel: 'BDT',
             ),
             SizedBox(height: 16.0),
             InkWell(
               onTap: () => selectDate(context),
               child: InputDecorator(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: MyColor.slightGray,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +151,15 @@ class _AddExpenseModalState extends State<AddExpenseModal> {
                     });
                   },
                   items: buildDropdownItems(categories),
-                  decoration: InputDecoration(labelText: 'Category'),
+                  decoration: InputDecoration(
+                    labelText: "Category",
+                    filled: true,
+                    fillColor: MyColor.slightGray,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
                 );
               },
             ),
