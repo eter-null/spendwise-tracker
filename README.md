@@ -8,11 +8,10 @@ A comprehensive expense tracking mobile application built with Flutter and Fireb
 
 ## 📱 Screenshots
 
-> Add screenshots of your app here - showing main dashboard, expense entry, statistics view, etc.
-
-| Dashboard | Add Expense | Statistics | Settings |
-|-----------|-------------|------------|----------|
-| ![Dashboard](link-to-screenshot) | ![Add Expense](link-to-screenshot) | ![Statistics](link-to-screenshot) | ![Settings](link-to-screenshot) |
+| Authentication | Expense Tracking | Data Visualization | Category Management |
+|----------------|------------------|-------------------|-------------------|
+| ![Sign Up](screenshots/signup.png) | ![Expenses List](screenshots/expenses.png) | ![Statistics](screenshots/charts.png) | ![Categories](screenshots/categories.png) |
+| *Secure user registration with Firebase Auth* | *Add, edit, and delete expenses with intuitive UI* | *Interactive charts showing spending patterns* | *Custom expense categories with icons* |
 
 ## ✨ Features
 
@@ -89,23 +88,6 @@ lib/
 ├── services/        # Firebase integration & data management
 ├── utils/           # Helper functions and database models
 └── main.dart        # App entry point
-```
-
-## 🔧 Configuration
-
-### Firebase Rules (Firestore)
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-      match /expenses/{expenseId} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
-      }
-    }
-  }
-}
 ```
 
 ## 📊 Key Metrics & Achievements
