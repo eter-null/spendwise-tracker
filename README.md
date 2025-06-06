@@ -13,8 +13,11 @@ A comprehensive expense tracking mobile application built with Flutter and Fireb
 | ![Sign Up](screenshots/signup.jpg) | ![Expenses List](screenshots/expenses.png) | ![Statistics](screenshots/analysis.gif) | ![Categories](screenshots/categories.png) |
 | *Secure user registration with Firebase Auth* | *Add, edit, and delete expenses with intuitive UI* | *Interactive charts showing spending patterns* | *Custom expense categories with icons* |
 
+
 ## 🎥 Live Demo
-[📺 Watch Full App Walkthrough](https://youtube.com/shorts/_JSKY-Jf9JQ)
+
+[![Watch the Demo](https://img.shields.io/badge/▶️%20Watch%20Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/shorts/_JSKY-Jf9JQ)
+
 
 ## ✨ Features
 
