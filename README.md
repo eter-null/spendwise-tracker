@@ -104,7 +104,7 @@ lib/
 - ✅ **Scalability**: Designed to handle 10,000+ expense entries per user
 - ✅ **Cross-platform**: Runs seamlessly on both Android and iOS
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Flutter team for the amazing framework
 - Firebase for backend services
