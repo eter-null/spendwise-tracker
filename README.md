@@ -13,6 +13,10 @@ A comprehensive expense tracking mobile application built with Flutter and Fireb
 | ![Sign Up](screenshots/signup.jpg) | ![Expenses List](screenshots/expenses.png) | ![Statistics](screenshots/analysis.gif) | ![Categories](screenshots/categories.png) |
 | *Secure user registration with Firebase Auth* | *Add, edit, and delete expenses with intuitive UI* | *Interactive charts showing spending patterns* | *Custom expense categories with icons* |
 
+## 🎥 Live Demo
+[![App Demo](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtube.com/shorts/_JSKY-Jf9JQ)
+*Click above to see the full app walkthrough and features in action*
+
 ## ✨ Features
 
 ### Core Functionality
@@ -98,36 +102,6 @@ lib/
 - ✅ **Scalability**: Designed to handle 10,000+ expense entries per user
 - ✅ **Cross-platform**: Runs seamlessly on both Android and iOS
 
-## 🎯 Future Enhancements
-
-- [ ] **Receipt Scanning** - OCR integration for automatic expense entry
-- [ ] **Multi-currency Support** - Handle international transactions
-- [ ] **Export Features** - PDF/CSV export of financial reports
-- [ ] **Budget Sharing** - Family/group budget management
-- [ ] **Investment Tracking** - Portfolio management features
-- [ ] **AI Insights** - Machine learning-powered spending predictions
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**Ikkty Rahman**
-- GitHub: [@eter-null](https://github.com/eter-null)
-- Email: ikktyrahman@gmail.com
-- LinkedIn: [Your LinkedIn Profile]
-
 ## 🙏 Acknowledgments
 
 - Flutter team for the amazing framework
@@ -135,15 +109,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Open source community for various packages used
 
 ---
-
-⭐ If you found this project helpful, please give it a star!
-
-## 📱 Download
-
-> Add links to Google Play Store / Apple App Store if published
-
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200">](link-to-play-store)
-
----
-
-*Built with ❤️ by Ikkty Rahman*
